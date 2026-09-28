@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul Lester Ivan N. Malana | IT Graduate & Graphic Designer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="projects-carousel.js"></script>
+    <script src="experience-animation.js"></script>
+    <script src="script.js"></script>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="brand-logo">
+                <div class="logo-badge">PM</div>
+                <span class="logo-text">
+                    Paul Lester Ivan <span class="highlight-text">Malana</span>
+                </span>
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="desktop-actions">
+                <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon icon-moon"></i>
+                    <i class="fa-solid fa-sun icon-sun"></i>
+                </button>
+                <a href="#contact" class="btn btn-primary btn-sm">Let's Connect</a>
+            </div>
+
+            <div class="mobile-controls">
+                <button id="themeToggleMobile" class="icon-btn" aria-label="Toggle Theme Mobile">
+                    <i class="fa-solid fa-moon icon-moon"></i>
+                    <i class="fa-solid fa-sun icon-sun"></i>
+                </button>
+                <button id="mobileMenuBtn" class="icon-btn" aria-label="Open Navigation Menu">
+                    <i class="fa-solid fa-bars" id="menuIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobileMenu" class="mobile-menu hidden">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+            <a href="#contact" class="btn btn-primary btn-full">Get In Touch</a>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="glow-effect glow-1"></div>
+            <div class="glow-effect glow-2"></div>
+
+            <div class="container hero-grid">
+                <div class="hero-text">
+                    <div class="status-badge">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Makati City, Philippines</span>
+                        <span class="dot-pulse"></span>
+                    </div>
+
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="gradient-text">Paul Lester Ivan</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        IT Graduate | Graphic Designer & Layout Artist | Marketing & IT Support Professional
+                    </p>
+
+                    <p class="hero-description">
+                        Versatile Operations, Marketing & IT Professional with hands-on experience in graphic design, layout creation, technical support, hardware troubleshooting, CRM management, and end-to-end logistics.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">
+                            Get In Touch <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <button id="downloadResumeBtn" class="btn btn-secondary">
+                            <i class="fa-solid fa-download"></i>
+                            <span>Download Resume</span>
+                        </button>
+                    </div>
+
+                    <div class="quick-stats">
+                        <div class="stat-item">
+                            <p class="stat-number">Marketing</p>
+                            <p class="stat-label">& Operations
+                        </div>
+                        <div class="stat-item">
+                            <p class="stat-number">Graphic</p>
+                            <p class="stat-label">Design & Layout</p>
+                        </div>
+                        <div class="stat-item">
+                            <p class="stat-number">IT Support</p>
+                            <p class="stat-label">Specialist
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="profile-card glass-card">
+                        <div class="avatar-box">PL</div>
+                        <div class="profile-info">
+                            <h3>Paul Lester Ivan N. Malana</h3>
+                            <p class="role-tag">Marketing & IT Specialist</p>
+                            <p class="quote">Creating multi-channel visual assets, executing strategic marketing campaigns, driving efficient logistics & CRM workflows, and resolving IT system issues.</p>
+                        </div>
+                        <div class="social-links">
+                            <a href="mailto:paullesterivanmalana@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                            <a href="https://linkedin.com/in/paul-lester-ivan-malana-a053092b8" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="https://profile.indeed.com" target="_blank" rel="noopener noreferrer" aria-label="Indeed"><i class="fa-solid fa-briefcase"></i></a>
+                            <a href="#skills" aria-label="Skills"><i class="fa-solid fa-layer-group"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section alt-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="sub-heading">About Me</h2>
+                    <p class="main-heading">Bridging Marketing & Information Technology</p>
+                    <div class="heading-line"></div>
+                </div>
+
+                <div class="about-grid">
+                    <div class="about-bio">
+                        <p>I am a <strong>BS Information Technology Graduate</strong> and <strong>Marketing & Graphic Design Professional</strong> based in <strong>San Antonio, Makati City, Metro Manila, Philippines</strong>.</p>
+                        <p>My expertise spans creative graphic design and layout artistry for print and digital campaigns—including tarpaulins, billboards, vehicle wraps, posters, and brochures using <span class="highlight-text">Adobe Photoshop, Illustrator, and Canva</span>—as well as video editing using <span class="highlight-text">Adobe Premiere Pro, and CapCut</span>.</p>
+                        <p>In addition to creative marketing and IT technical support, I am experienced in managing the full lifecycle of operations, including end-to-end logistics tracking, vendor coordination, and CRM administration using <span class="highlight-text">Vtiger CRM and QuickBooks</span>.</p>
+                    </div>
+
+                    <div class="cards-grid">
+                        <div class="glass-card feature-card">
+                            <div class="card-icon"><i class="fa-solid fa-palette"></i></div>
+                            <h4>Graphic Design & Layout</h4>
+                            <p>Posters, tarpaulins, billboards, coaster vehicles, & media assets.</p>
+                        </div>
+
+                        <div class="glass-card feature-card">
+                            <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
+                            <h4>IT Technical Support</h4>
+                            <p>Hardware troubleshooting, network setups, and system access control.</p>
+                        </div>
+
+                        <div class="glass-card feature-card">
+                            <div class="card-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                            <h4>Marketing & Branding</h4>
+                            <p>Multi-channel visual branding, photo/video editing, and campaign deployment.</p>
+                        </div>
+
+                        <div class="glass-card feature-card">
+                            <div class="card-icon"><i class="fa-solid fa-gears"></i></div>
+                            <h4>Operations & CRM</h4>
+                            <p>End-to-end logistics, Vtiger CRM, QuickBooks, and RFQ handling.</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section with 3D Cylinder Loop Carousel -->
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="sub-heading">Capabilities</h2>
+                    <p class="main-heading">Core Skills & Technical Arsenal</p>
+                    <div class="heading-line"></div>
+                </div>
+
+                <div class="cylinder-carousel-container">
+                    <button class="carousel-btn prev-btn" id="skillsPrevBtn" aria-label="Previous Slide">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <div class="cylinder-stage" id="skillsStage">
+                        <div class="cylinder-track" id="skillsTrack">
+                            
+                            <!-- Card 1 -->
+                            <div class="glass-card skill-card cylinder-card">
+                                <div class="skill-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                                <h3>Graphic Design & Layout</h3>
+                                <p>Creating visually engaging promotional layouts, print outputs, billboards, and multimedia assets.</p>
+                                <div class="tag-group">
+                                    <span class="tag">Adobe Photoshop</span>
+                                    <span class="tag">Adobe Illustrator</span>
+                                    <span class="tag">Adobe Premiere Pro</span>
+                                    <span class="tag">CapCut</span>
+                                    <span class="tag">Tarpaulin & Billboard Layouts</span>
+                                    <span class="tag">Vehicle Wraps</span>
+                                    <span class="tag">Canva</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 2 -->
+                            <div class="glass-card skill-card cylinder-card">
+                                <div class="skill-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                                <h3>Marketing & Digital Strategy</h3>
+                                <p>Executing multi-channel marketing campaigns, driving social media growth, and optimizing email outreach.</p>
+                                <div class="tag-group">
+                                    <span class="tag">Social Media Management <br> & Audience Engagement</span>
+                                    <span class="tag">EDM (Electronic Direct Mail)</span>
+                                    <span class="tag">Content Strategy & Planning</span>
+                                    <span class="tag">Digital Marketing Assets</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 3 -->
+                            <div class="glass-card skill-card cylinder-card">
+                                <div class="skill-icon"><i class="fa-solid fa-gears"></i></div>
+                                <h3>Operations & CRM</h3>
+                                <p>Handling end-to-end local & international logistics Arrangement, QuickBooks logging, and Vtiger CRM workflows.</p>
+                                <div class="tag-group">
+                                    <span class="tag">Vtiger CRM</span>
+                                    <span class="tag">QuickBooks</span>
+                                    <span class="tag">Logistics Arrangement</span>
+                                    <span class="tag">Vendor RFQs & POs</span>
+                                    <span class="tag">MS Office / Excel</span>
+                                </div>
+                            </div>
+
+                            <!-- Card 4 -->
+                            <div class="glass-card skill-card cylinder-card">
+                                <div class="skill-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                                <h3>IT Support & Systems</h3>
+                                <p>Resolving hardware and software issues, driver setups, network configurations, and system access control.</p>
+                                <div class="tag-group">
+                                    <span class="tag">Hardware Troubleshooting</span>
+                                    <span class="tag">Software Installation</span>
+                                    <span class="tag">Network Connectivity</span>
+                                    <span class="tag">Computer Equipment Setup</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn next-btn" id="skillsNextBtn" aria-label="Next Slide">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section alt-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="sub-heading">Track Record</h2>
+                    <p class="main-heading">Professional Experience</p>
+                    <div class="heading-line"></div>
+                </div>
+
+                <div class="timeline">
+                    <!-- Role 1: Datumstruct -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3>Operations and Marketing Assistant</h3>
+                                    <p class="company-name">Datumstruct Philippines Inc.</p>
+                                </div>
+                                <span class="time-badge">July 2026 – Present | Bel-Air, Makati City</span>
+                            </div>
+                            <ul class="bullet-list">
+                                <li><i class="fa-solid fa-circle-check"></i> Managed end-to-end local and international logistics, ensuring timely tracking and delivery.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Processed RFQs and POs utilizing Vtiger CRM and QuickBooks.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Generated inventory and operational performance tracking reports.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Designed high-converting Electronic Direct Mail (EDM) campaigns, social media graphics, and professional LinkedIn marketing posters.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 2: King Thomas Marketing/Graphic Design -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3>Marketing Staff – Senior Graphic Designer</h3>
+                                    <p class="company-name">King Thomas Learning Academy, Inc.</p>
+                                </div>
+                                <span class="time-badge">June 2025 – July 2026 | Sipocot, Camarines Sur</span>
+                            </div>
+                            <ul class="bullet-list">
+                                <li><i class="fa-solid fa-circle-check"></i> Designed print and digital marketing materials for school and partner campaigns.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Developed layouts for posters, tarpaulins, social media assets, and large-format outputs.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Edited photos and promotional videos using Premiere Pro, Canva, and CapCut.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Delivered billboard and vehicle (coaster) layout projects while meeting campaign deadlines.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 3: King Thomas IT Support -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3>IT Support Specialist</h3>
+                                    <p class="company-name">King Thomas Learning Academy, Inc.</p>
+                                </div>
+                                <span class="time-badge">June 2025 – July 2026 | Sipocot, Camarines Sur</span>
+                            </div>
+                            <ul class="bullet-list">
+                                <li><i class="fa-solid fa-circle-check"></i> Provided technical support for desktop, laptop, and network connectivity issues.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Installed and configured software, drivers, and institutional system applications.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Troubleshot hardware and peripheral devices to restore uninterrupted operation.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Managed user accounts, system access credentials, and network troubleshooting.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Role 4: Freelance (NEW) -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="glass-card timeline-card">
+                            <div class="timeline-header">
+                                <div>
+                                    <h3>Freelance Graphic Designer, Layout Artist <br>& Web Designer</h3>
+                                    <p class="company-name">Upwork & Fiverr / Remote</p>
+                                </div>
+                                <span class="time-badge"> June 2022 – October 2025 | Lupi, Camarines Sur</span>
+                            </div>
+                            <ul class="bullet-list">
+                                <li><i class="fa-solid fa-circle-check"></i> Designed custom brand identities, social media graphics, tarpaulins, and marketing collaterals for local and International clients.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Created responsive web designs, UI layouts, and landing page visual elements tailored to client branding.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Edited promotional photo and video assets for digital ads and e-commerce campaigns.</li>
+                                <li><i class="fa-solid fa-circle-check"></i> Communicated directly with clients to translate project requirements into production-ready deliverables on schedule.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="sub-heading">Portfolio</h2>
+                    <p class="main-heading">Featured Projects & Highlights</p>
+                    <div class="heading-line"></div>
+                </div>
+
+                <div class="cylinder-carousel-container">
+                    <button class="carousel-btn prev-btn" id="projectsPrevBtn" aria-label="Previous Project">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <div class="cylinder-stage" id="projectsStage">
+                        <div class="cylinder-track" id="projectsTrack">
+                            
+                            <!-- Card 1: Graphic Design & Layout -->
+                            <a href="gallery.html" class="glass-card project-card cylinder-card project-link">
+                                <div class="project-banner gradient-marketing">
+                                    <i class="fa-solid fa-palette banner-icon"></i>
+                                    <span class="category-tag">Graphic Design</span>
+                                    <h3>Graphic Design & Layout</h3>
+                                </div>
+                                <div class="project-body">
+                                    <p>Posters, tarpaulins, billboards, coaster vehicles, & media assets.</p>
+                                    <div class="tag-group">
+                                        <span class="tag-sm">Photoshop</span>
+                                        <span class="tag-sm">Illustrator</span>
+                                        <span class="tag-sm">Canva</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Card 2: IT Technical Support -->
+                            <a href="gallery.html" class="glass-card project-card cylinder-card project-link">
+                                <div class="project-banner gradient-systems">
+                                    <i class="fa-solid fa-headset banner-icon"></i>
+                                    <span class="category-tag">IT Support</span>
+                                    <h3>IT Technical Support</h3>
+                                </div>
+                                <div class="project-body">
+                                    <p>Hardware troubleshooting, network setups, and system access control.</p>
+                                    <div class="tag-group">
+                                        <span class="tag-sm">Hardware</span>
+                                        <span class="tag-sm">Network</span>
+                                        <span class="tag-sm">Systems</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Card 3: Marketing & Branding -->
+                            <a href="gallery.html" class="glass-card project-card cylinder-card project-link">
+                                <div class="project-banner gradient-marketing">
+                                    <i class="fa-solid fa-bullhorn banner-icon"></i>
+                                    <span class="category-tag">Marketing</span>
+                                    <h3>Marketing & Branding</h3>
+                                </div>
+                                <div class="project-body">
+                                    <p>Multi-channel visual branding, photo/video editing, and campaign deployment.</p>
+                                    <div class="tag-group">
+                                        <span class="tag-sm">EDM</span>
+                                        <span class="tag-sm">Social Media</span>
+                                        <span class="tag-sm">Branding</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Card 4: Operations & CRM -->
+                            <a href="gallery.html" class="glass-card project-card cylinder-card project-link">
+                                <div class="project-banner gradient-ops">
+                                    <i class="fa-solid fa-gears banner-icon"></i>
+                                    <span class="category-tag">Operations</span>
+                                    <h3>Operations & CRM</h3>
+                                </div>
+                                <div class="project-body">
+                                    <p>End-to-end logistics, Vtiger CRM, QuickBooks, and RFQ handling.</p>
+                                    <div class="tag-group">
+                                        <span class="tag-sm">Vtiger CRM</span>
+                                        <span class="tag-sm">QuickBooks</span>
+                                        <span class="tag-sm">Logistics</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                            <!-- Card 5: 2025 Portfolio -->
+                            <a href="gallery.html" class="glass-card project-card cylinder-card project-link">
+                                <div class="project-banner gradient-ops">
+                                    <i class="fa-solid fa-folder-open banner-icon"></i>
+                                    <span class="category-tag">Archive</span>
+                                    <h3>2025 Portfolio</h3>
+                                </div>
+                                <div class="project-body">
+                                    <p>Access my 2025 portfolio and archived work showcase.</p>
+                                    <div class="tag-group">
+                                        <span class="tag-sm">Portfolio 2025</span>
+                                        <span class="tag-sm">Archive</span>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <button class="carousel-btn next-btn" id="projectsNextBtn" aria-label="Next Project">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section alt-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="sub-heading">Get In Touch</h2>
+                    <p class="main-heading">Let's Work Together</p>
+                    <div class="heading-line"></div>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="glass-card contact-card">
+                            <h3>Contact Information</h3>
+                            <div class="info-list">
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+                                    <div>
+                                        <p class="label">Location</p>
+                                        <p class="val">San Antonio, Makati City, 1203, Metro Manila, Philippines</p>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+                                    <div>
+                                        <p class="label">Email</p>
+                                        <a href="mailto:paullesterivanmalana@gmail.com" class="val link">paullesterivanmalana@gmail.com</a>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+                                    <div>
+                                        <p class="label">Phone</p>
+                                        <p class="val">0962-673-2536</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card status-card">
+                            <div class="status-indicator">
+                                <span class="ping-dot"></span>
+                                <span class="status-text">Open for Opportunities</span>
+                            </div>
+                            <p>Open for Graphic Design, Marketing, IT Support, and Operations roles.</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-form-wrapper">
+                        <div class="glass-card contact-card">
+                            <h3>Send a Message</h3>
+                            <form id="contactForm">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Your Name *</label>
+                                        <input type="text" id="name" required placeholder="John Doe">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Your Email *</label>
+                                        <input type="email" id="email" required placeholder="john@example.com">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" id="subject" placeholder="Project Inquiry / Job Opportunity">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message *</label>
+                                    <textarea id="message" rows="4" required placeholder="How can Paul help you?"></textarea>
+                                </div>
+                                <button type="submit" id="submitBtn" class="btn btn-primary btn-full">
+                                    <span>Send Message</span>
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </form>
+                            <div id="formFeedback" class="form-feedback hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+    <div class="container footer-content">
+        <div class="footer-brand">
+            <div class="logo-badge">PM</div>
+            <span class="logo-text">Paul Lester Ivan N. Malana</span>
+        </div>
+        <p>BS IT Graduate | Graphic Design & Layout Specialist | Marketing & IT Support</p>
+        <div class="social-links">
+            <a href="mailto:paullesterivanmalana@gmail.com" aria-label="Email Me"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://linkedin.com/in/paul-lester-ivan-malana-a053092b8" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://profile.indeed.com" target="_blank" rel="noopener noreferrer" aria-label="Indeed Profile"><i class="fa-solid fa-briefcase"></i></a>
+            <a href="#skills" aria-label="Capabilities & Skills"><i class="fa-solid fa-layer-group"></i></a>
+        </div>
+        <p class="copyright">&copy; <span id="year"></span> Paul Lester Ivan N. Malana. All rights reserved.</p>
+    </div>
+</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            const themeToggleBtn = document.getElementById('themeToggle');
+            const themeToggleMobileBtn = document.getElementById('themeToggleMobile');
+            
+            function toggleDarkMode() {
+                document.body.classList.toggle('dark');
+                localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+            }
+
+            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.body.classList.add('dark');
+            }
+
+            themeToggleBtn?.addEventListener('click', toggleDarkMode);
+            themeToggleMobileBtn?.addEventListener('click', toggleDarkMode);
+
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuIcon = document.getElementById('menuIcon');
+
+            mobileMenuBtn?.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('fa-bars');
+                menuIcon.classList.toggle('fa-xmark');
+            });
+
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    menuIcon.classList.add('fa-bars');
+                    menuIcon.classList.remove('fa-xmark');
+                });
+            });
+
+            const downloadBtn = document.getElementById('downloadResumeBtn');
+            downloadBtn?.addEventListener('click', () => {
+                const orig = downloadBtn.innerHTML;
+                downloadBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Preparing...`;
+                
+                setTimeout(() => {
+                    downloadBtn.innerHTML = `<i class="fa-solid fa-check"></i> Download Started!`;
+                    
+                    const blob = new Blob([
+                        "PAUL LESTER IVAN N. MALANA\n" +
+                        "BS IT Graduate | Graphic Design & Layout Artist | Marketing & IT Support\n" +
+                        "Location: San Antonio, Makati City, 1203\n" +
+                        "Email: paullesterivanmalana@gmail.com\n" +
+                        "Phone: 0962-673-2536\n\n" +
+                        "EXPERIENCE HIGHLIGHTS:\n" +
+                        "- Operations and Marketing Assistant at Datumstruct Philippines Inc.\n" +
+                        "- Senior Graphic Designer & Marketing Staff at King Thomas Learning Academy, Inc.\n" +
+                        "- IT Support Specialist (Desktop, Laptop, Network Troubleshooting)\n" +
+                        "- Software: Photoshop, Illustrator, Premiere Pro, Vtiger CRM, QuickBooks"
+                    ], { type: 'text/plain' });
+                    
+                    const a = document.createElement('a');
+                    a.href = URL.createObjectURL(blob);
+                    a.download = 'Paul_Lester_Ivan_Malana_Resume.txt';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+
+                    setTimeout(() => downloadBtn.innerHTML = orig, 3000);
+                }, 1000);
+            });
+
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filterValue = btn.getAttribute('data-filter');
+                    projectCards.forEach(card => {
+                        card.style.display = (filterValue === 'all' || card.getAttribute('data-category') === filterValue) ? 'flex' : 'none';
+                    });
+                });
+            });
+
+            const contactForm = document.getElementById('contactForm');
+            const formFeedback = document.getElementById('formFeedback');
+            const submitBtn = document.getElementById('submitBtn');
+
+            contactForm?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const orig = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch animate-spin"></i> Sending...`;
+
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = orig;
+                    formFeedback.innerHTML = `<i class="fa-solid fa-circle-check"></i> Thank you! Your message has been sent to Paul.`;
+                    formFeedback.classList.remove('hidden');
+                    contactForm.reset();
+                    setTimeout(() => formFeedback.classList.add('hidden'), 5000);
+                }, 1200);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Showcase | Paul Lester Ivan N. Malana</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS v4 Browser Compiler -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- External CSS Files -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="gallery-styles.css">
+</head>
+<body class="dark">
+
+    <!-- Gallery Header Navigation (Untouched) -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="brand-logo">
+                <div class="logo-badge">PM</div>
+                <span class="logo-text">
+                    Paul Lester Ivan <span class="highlight-text">Malana</span>
+                </span>
+            </a>
+
+            <div class="desktop-actions">
+                <a href="index.html" class="btn-cyan-glow btn-sm">
+                    <i class="fa-solid fa-house home-icon"></i> Return to Main Portfolio
+                </a>
+                <button id="themeToggle" class="icon-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon icon-moon"></i>
+                    <i class="fa-solid fa-sun icon-sun"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Gallery Hero Section -->
+    <section class="gallery-hero">
+        <div class="container">
+            <div class="gallery-hero-header">
+                <!-- Sub-Heading Pulsing Pill Badge -->
+                <div class="sub-badge">
+                    <span class="pulsing-dot"></span>
+                    <span>FULL PROJECT PORTFOLIO</span>
+                </div>
+
+                <!-- Exact Styled Headline -->
+                <h1 class="gallery-main-title">
+                    Work Showcase & <span class="highlight-blue">Visual Highlights</span>
+                </h1>
+                <p class="hero-subtext">
+                    Explore comprehensive visual media, technical implementations, marketing collateral, and operational workflows executed across all major roles.
+                </p>
+                <div class="heading-line"></div>
+            </div>
+
+            <!-- Category Filter Bar -->
+            <div class="gallery-filters">
+                <button class="gallery-filter-btn active" data-filter="all">
+                    <i class="fa-solid fa-layer-group"></i> All Works
+                </button>
+                <button class="gallery-filter-btn" data-filter="graphic">
+                    <i class="fa-solid fa-palette"></i> Graphic Design
+                </button>
+                <button class="gallery-filter-btn" data-filter="marketing">
+                    <i class="fa-solid fa-bullhorn"></i> Marketing
+                </button>
+                <button class="gallery-filter-btn" data-filter="archive">
+                    <i class="fa-solid fa-folder-open"></i> 2024-2025 Archive
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid Showcase -->
+    <section class="section gallery-section">
+        <div class="container">
+            <div class="gallery-grid" id="galleryGrid">
+
+<!-- Item 1: Graphic Design (Billboards) -->
+            <div class="gallery-card" 
+                 data-category="graphic" 
+                 data-key="billboards"
+                 data-title="Billboard & Large Format Banner Layouts" 
+                 data-tag="Graphic Design & Branding"
+                 data-desc="High-impact large format designs engineered for high-visibility billboards, tarpaulins, and event branding displays at King Thomas Learning Academy."
+                 data-img="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=1200&q=80">
+                <div class="gallery-card-thumb">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80" alt="Billboard & Banner Layouts">
+                </div>
+                <div class="gallery-card-content">
+                    <span class="gallery-tag"><i class="fa-solid fa-palette"></i> Graphic Design</span>
+                    <h3>Billboard & Banner Layouts</h3>
+                    <p>Large format billboards, tarpaulins, and event promotional graphics.</p>
+                </div>
+            </div>
+
+            <!-- Item 2: Graphic Design (Vehicle Branding) -->
+            <div class="gallery-card" 
+                 data-category="graphic"
+                 data-key="vehicle"
+                 data-title="Vehicle Branding & Coaster Wraps" 
+                 data-tag="Vehicle Branding"
+                 data-desc="Custom fleet graphics and coaster vehicle wraps designed for high brand recognition during student transit and corporate events."
+                 data-img="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=1200&q=80">
+                <div class="gallery-card-thumb">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80" alt="Vehicle Branding Wraps">
+                </div>
+                <div class="gallery-card-content">
+                    <span class="gallery-tag"><i class="fa-solid fa-palette"></i> Graphic Design</span>
+                    <h3>Vehicle Branding & Coaster Wraps</h3>
+                    <p>Full-scale promotional graphics applied to transit vehicles.</p>
+                </div>
+            </div> 
+
+            <!-- Item 3: Logo & Branding -->
+            <div class="gallery-card" 
+                 data-category="graphic"
+                 data-key="logo"
+                 data-title="Logo Design & Visual Brand Identity" 
+                 data-tag="Logo & Branding"
+                 data-desc="Complete brand identity packages including primary/secondary logos, color palettes, typography guidelines, and brand assets."
+                 data-img="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=1200&q=80">
+                <div class="gallery-card-thumb">
+                    <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80" alt="Logo & Visual Brand Identity">
+                </div>
+                <div class="gallery-card-content">
+                    <span class="gallery-tag"><i class="fa-solid fa-pen-nib"></i> Logo & Branding</span>
+                    <h3>Logo Design & Brand Identity</h3>
+                    <p>Custom logos, vector marks, visual guidelines, and brand asset packages.</p>
+                </div>
+            </div>
+
+            <!-- Item 4: Marketing (EDM HTML Preview + Social Posters) -->
+            <div class="gallery-card" 
+                data-category="marketing"
+                data-key="marketing"
+                data-title="Multi-Channel EDM & Social Campaigns" 
+                data-tag="Digital Marketing Strategy"
+                data-desc="Targeted Electronic Direct Mail (EDM) templates, newsletter designs, and social media campaign assets driving reader engagement."
+                data-img="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80">
+                <div class="gallery-card-thumb">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="EDM Campaigns">
+                </div>
+                <div class="gallery-card-content">
+                    <span class="gallery-tag"><i class="fa-solid fa-bullhorn"></i> Marketing</span>
+                    <h3>EDM & Digital Campaign Assets</h3>
+                    <p>Email newsletters, campaign metrics tracking, and promotional content.</p>
+                </div>
+            </div>
+
+                <!-- Item 5: Archive (PDF View) -->
+                <div class="gallery-card" 
+                    data-category="archive"
+                    data-key="archive"
+                    data-title="Organization, Upwork & Fiverr Freelance Archive" 
+                    data-tag="2024-2025 Archived Work"
+                    data-desc="A complete repository of client deliverables completed between 2022 and 2025, covering social media kits, web banners, and UI assets."
+                    data-img="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80">
+                    <div class="gallery-card-thumb">
+                        <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=800&q=80" alt="2024-2025 Portfolio Archive">
+                    </div>
+                    <div class="gallery-card-content">
+                        <span class="gallery-tag"><i class="fa-solid fa-folder-open"></i> 2024-2025 Archive</span>
+                        <h3>2024-2025 Portfolio & Freelance Archive</h3>
+                        <p>Archived client projects, graphic design assets, and freelance deliverables.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Column-Based Masonry Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal" aria-hidden="true">
+        <div class="lightbox-overlay" id="lightboxOverlay"></div>
+        <div class="lightbox-content scroll-masonry-modal">
+            <button class="lightbox-close" id="lightboxClose" aria-label="Close Preview">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="modal-header">
+                <span class="sub-badge" id="lightboxTag">Category</span>
+                <h2 id="lightboxTitle" class="gallery-main-title">Project Title</h2>
+            </div>
+
+            <!-- Natural Variable-Height Column Masonry Stage -->
+            <div class="modal-masonry-stage">
+                <section class="tgl-07 w-full flex items-start justify-center font-tgl07-sans px-2 py-4">
+                    <div class="w-[min(920px,100%)] columns-4 gap-3.5 max-[820px]:columns-3 max-[560px]:columns-2" id="modalMasonryGrid">
+                        <!-- Dynamic figures with original image ratios rendered via JS -->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer (Untouched) -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <div class="logo-badge">PM</div>
+                <span class="logo-text">Paul Lester Ivan N. Malana</span>
+            </div>
+            <p>BS IT Graduate | Graphic Design & Layout Specialist | Marketing & IT Support</p>
+            <div class="social-links">
+                <a href="mailto:paullesterivanmalana@gmail.com" aria-label="Email Me"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/paul-lester-ivan-malana-a053092b8" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="https://profile.indeed.com" target="_blank" rel="noopener noreferrer" aria-label="Indeed Profile"><i class="fa-solid fa-briefcase"></i></a>
+                <a href="#skills" aria-label="Capabilities & Skills"><i class="fa-solid fa-layer-group"></i></a>
+            </div>
+            <p class="copyright">&copy; <span id="year"></span> Paul Lester Ivan N. Malana. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Dedicated Gallery JavaScript -->
+    <script src="gallery-script.js"></script>
+</body>
+</html>

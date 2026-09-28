@@ -1,0 +1,1138 @@
+/* ==========================================================================
+   GALLERY PAGE SPECIFIC STYLES
+   ========================================================================== */
+
+.gallery-hero {
+    padding: 7rem 0 2rem;
+    background: radial-gradient(circle at 50% 20%, rgba(14, 165, 233, 0.12), transparent 70%);
+}
+
+.gallery-hero-header {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 2.5rem;
+}
+
+/* Sub-Heading Pulsing Pill Badge */
+.sub-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 1.35rem;
+    border-radius: 50px;
+    background: rgba(14, 165, 233, 0.08);
+    border: 1px solid rgba(14, 165, 233, 0.35);
+    color: #0ea5e9;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 0 15px rgba(14, 165, 233, 0.15);
+}
+
+.pulsing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #0ea5e9;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #0ea5e9;
+    animation: dotPulse 1.8s infinite ease-in-out;
+}
+
+@keyframes dotPulse {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(14, 165, 233, 0.7);
+    }
+    70% {
+        transform: scale(1.15);
+        box-shadow: 0 0 0 8px rgba(14, 165, 233, 0);
+    }
+    100% {
+        transform: scale(0.9);
+        box-shadow: 0 0 0 0 rgba(14, 165, 233, 0);
+    }
+}
+
+.highlight-cyan {
+    color: #0ea5e9;
+}
+
+.hero-subtext {
+    color: var(--text-secondary, #94a3b8);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-top: 0.75rem;
+}
+
+/* Category Filter Bar */
+.gallery-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+}
+
+.gallery-filter-btn {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-secondary, #94a3b8);
+    padding: 0.6rem 1.25rem;
+    border-radius: 50px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+body:not(.dark) .gallery-filter-btn {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: #e2e8f0;
+    color: #475569;
+}
+
+.gallery-filter-btn:hover {
+    color: #ffffff;
+    border-color: var(--accent-sky, #0ea5e9);
+    transform: translateY(-2px);
+}
+
+.gallery-filter-btn.active {
+    background: var(--accent-sky, #0ea5e9) !important;
+    color: #ffffff !important;
+    border-color: var(--accent-sky, #0ea5e9) !important;
+    box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+}
+
+/* Gallery Grid Layout */
+.gallery-section {
+    padding-top: 1rem;
+    padding-bottom: 4rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.75rem;
+}
+
+.gallery-card {
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+body:not(.dark) .gallery-card {
+    background: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.gallery-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(14, 165, 233, 0.5);
+    box-shadow: 0 20px 35px rgba(14, 165, 233, 0.2);
+}
+
+.gallery-card-thumb {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    background: #090d16;
+}
+
+.gallery-card-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.gallery-card:hover .gallery-card-thumb img {
+    transform: scale(1.08);
+}
+
+.gallery-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(14, 165, 233, 0.3);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.gallery-card:hover .gallery-card-overlay {
+    opacity: 1;
+}
+
+.overlay-icon {
+    width: 3rem;
+    height: 3rem;
+    background: #0ea5e9;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.gallery-card:hover .overlay-icon {
+    transform: scale(1);
+}
+
+.gallery-card-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.gallery-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #38bdf8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.gallery-card-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+body:not(.dark) .gallery-card-content h3 {
+    color: #0f172a;
+}
+
+.gallery-card-content p {
+    font-size: 0.88rem;
+    color: #94a3b8;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Vibrant Cyan Return Button */
+.return-portfolio-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3.5rem 0 1rem;
+}
+
+/* --- Refined & Subdued Navbar Return Button --- */
+.btn-cyan-glow.btn-sm {
+    background: #00a8f3;
+    color: #ffffff !important;
+    font-size: 0.82rem; /* Slightly smaller, crisp typography */
+    font-weight: 700;
+    padding: 0.45rem 1.1rem; /* Compact padding matching reference bar */
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    box-shadow: 0 3px 10px rgba(0, 168, 243, 0.25); /* Soft, subtle shadow instead of intense glow */
+    transition: background-color 0.25s ease, 
+                box-shadow 0.25s ease, 
+                transform 0.25s ease;
+}
+
+/* Subtle Hover Effect (Clean & Controlled) */
+.btn-cyan-glow.btn-sm:hover {
+    background: #0096dc;
+    transform: translateY(-1px); /* Gentle 1px lift */
+    box-shadow: 0 5px 14px rgba(0, 168, 243, 0.4); /* Refined, non-distracting hover glow */
+}
+
+/* Home Icon (Calmed Down Movement) */
+.btn-cyan-glow.btn-sm .home-icon {
+    font-size: 0.82rem;
+    transition: transform 0.25s ease;
+}
+
+.btn-cyan-glow.btn-sm:hover .home-icon {
+    transform: scale(1.08); /* Minimal icon scaling without popping or shaking */
+}
+
+/* Modal Lightbox Popup */
+.lightbox-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.88);
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-content {
+    position: relative;
+    z-index: 1010;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    max-width: 850px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.lightbox-modal.active .lightbox-content {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1020;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.lightbox-close:hover {
+    background: #0ea5e9;
+    border-color: #0ea5e9;
+    transform: rotate(90deg);
+}
+
+.lightbox-media {
+    width: 100%;
+    max-height: 460px;
+    overflow: hidden;
+    background: #020617;
+}
+
+.lightbox-media img {
+    width: 100%;
+    height: 100%;
+    max-height: 460px;
+    object-fit: contain;
+    display: block;
+}
+
+.lightbox-details {
+    padding: 1.5rem 2rem 2rem;
+}
+
+.lightbox-details h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0.5rem 0;
+}
+
+.lightbox-details p {
+    color: #94a3b8;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    .lightbox-details {
+        padding: 1.25rem;
+    }
+    .lightbox-details h2 {
+        font-size: 1.25rem;
+    }
+}
+
+/* --- Exact Reference Replica for Gallery Headline --- */
+.gallery-main-title {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-size: 3.75rem;
+    font-weight: 1000; /* Extra bold text matching screenshot */
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: #ffffff;
+    text-align: center;
+    max-width: 650px; /* Forces "Visual Highlights" cleanly onto line 2 */
+    margin: 0.75rem auto 1rem;
+}
+
+/* Bright Cyan Blue Highlight */
+.gallery-main-title .highlight-blue {
+    color: #00a8f3;
+    display: inline-block;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .gallery-main-title {
+        font-size: 2rem;
+        max-width: 100%;
+    }
+}
+
+/* ==========================================================================
+   LIGHT MODE CONTRAST & VISIBILITY FIXES
+   ========================================================================== */
+
+/* 1. Main Titles & Hero Headlines */
+body:not(.dark) .gallery-main-title,
+body:not(.dark) .gallery-card-content h3,
+body:not(.dark) .lightbox-details h2 {
+    color: #0f172a !important; /* High contrast dark navy for light mode */
+}
+
+/* 2. Subtexts, Paragraphs & Card Descriptions */
+body:not(.dark) .hero-subtext,
+body:not(.dark) .gallery-card-content p,
+body:not(.dark) .lightbox-details p {
+    color: #475569 !important; /* Slate gray for crisp readability */
+}
+
+/* 3. Sub-Heading Pill Badge ("FULL PROJECT PORTFOLIO") */
+body:not(.dark) .sub-badge {
+    background: rgba(14, 165, 233, 0.12);
+    border-color: rgba(14, 165, 233, 0.4);
+    color: #0284c7;
+}
+
+/* 4. Navbar Text & Subtext */
+body:not(.dark) .navbar {
+    background: #ffffff;
+    border-bottom-color: #e2e8f0;
+}
+
+body:not(.dark) .brand-text-group .logo-text {
+    color: #0f172a;
+}
+
+body:not(.dark) .brand-text-group .logo-subtext {
+    color: #64748b;
+}
+
+/* 5. Theme Toggle Button in Light Mode */
+body:not(.dark) .icon-btn-dark {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+    color: #475569;
+}
+
+body:not(.dark) .icon-btn-dark:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* 6. Lightbox Modal Background & Text */
+body:not(.dark) .lightbox-content {
+    background: #ffffff;
+    border-color: #e2e8f0;
+}
+
+body:not(.dark) .lightbox-overlay {
+    background: rgba(15, 23, 42, 0.7);
+}
+
+/* ==========================================================================
+   1. RESIZED & SCROLLABLE LIGHTBOX MODAL (PREVENTS OVERSIZED POPUP)
+   ========================================================================== */
+
+.lightbox-content {
+    position: relative;
+    z-index: 1010;
+    background: #0f172a;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    max-width: 620px; /* Reduced from 850px for a comfortable, balanced fit */
+    max-height: 85vh; /* Restricts maximum modal height to 85% of screen height */
+    width: 90%;
+    overflow-y: auto; /* Adds smooth internal scrolling if content/description is long */
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+    transform: scale(0.92);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lightbox-modal.active .lightbox-content {
+    transform: scale(1);
+}
+
+.lightbox-media {
+    width: 100%;
+    max-height: 320px; /* Constrains image height so it stays crisp and compact */
+    overflow: hidden;
+    background: #020617;
+}
+
+.lightbox-media img {
+    width: 100%;
+    height: 100%;
+    max-height: 320px;
+    object-fit: contain;
+    display: block;
+}
+
+.lightbox-details {
+    padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.lightbox-details h2 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 0.4rem 0;
+}
+
+.lightbox-details p {
+    color: #94a3b8;
+    line-height: 1.55;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+
+/* ==========================================================================
+   2. SPREAD-OUT GAME CARD DECK ANIMATION & LAYOUT
+   ========================================================================== */
+
+.deck-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+.deck-btn {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #94a3b8;
+    padding: 0.55rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.deck-btn.active, .deck-btn:hover {
+    background: #00a8f3;
+    color: #ffffff;
+    border-color: #00a8f3;
+    box-shadow: 0 4px 15px rgba(0, 168, 243, 0.35);
+}
+
+/* Card Deck Mode Container */
+.gallery-grid.deck-mode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 440px;
+    padding: 2rem 0;
+    overflow-x: auto; /* Allows smooth horizontal scrolling if many cards exist */
+    perspective: 1200px;
+    scrollbar-width: thin;
+    scrollbar-color: #00a8f3 rgba(15, 23, 42, 0.5);
+}
+
+/* Spread-out Game Card Animation */
+.gallery-grid.deck-mode .gallery-card {
+    min-width: 280px;
+    max-width: 300px;
+    margin-left: -90px; /* Overlaps cards into a hand deck stack */
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                box-shadow 0.4s ease, 
+                z-index 0.3s ease;
+    transform-origin: bottom center;
+    box-shadow: -8px 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+.gallery-grid.deck-mode .gallery-card:first-child {
+    margin-left: 0;
+}
+
+/* Fan Out Rotation Angles (Ordered like playing cards) */
+.gallery-grid.deck-mode .gallery-card:nth-child(1) { transform: rotate(-10deg) translateY(15px); }
+.gallery-grid.deck-mode .gallery-card:nth-child(2) { transform: rotate(-5deg) translateY(5px); }
+.gallery-grid.deck-mode .gallery-card:nth-child(3) { transform: rotate(0deg) translateY(0); }
+.gallery-grid.deck-mode .gallery-card:nth-child(4) { transform: rotate(5deg) translateY(5px); }
+.gallery-grid.deck-mode .gallery-card:nth-child(5) { transform: rotate(10deg) translateY(15px); }
+
+/* Hover Spread & Elevate Card from Hand Deck */
+.gallery-grid.deck-mode .gallery-card:hover {
+    transform: rotate(0deg) translateY(-35px) scale(1.08) !important;
+    z-index: 100 !important;
+    border-color: #00a8f3;
+    box-shadow: 0 20px 40px rgba(0, 168, 243, 0.45);
+}
+
+/* ==========================================================================
+   SCROLL-DRIVEN MASONRY ANIMATED LIGHTBOX (ADAM ARGYLE EFFECT)
+   ========================================================================== */
+
+/* Modal Container Sizing */
+.lightbox-content.scroll-masonry-modal {
+    max-width: 950px !important;
+    width: 92%;
+    max-height: 88vh;
+    padding: 2rem 1.5rem 1.5rem;
+    background: #090e17 !important;
+    border: 1px solid rgba(0, 168, 243, 0.3) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 168, 243, 0.15);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Scrollable Container for Masonry Cards */
+.modal-masonry-stage {
+    overflow-y: auto;
+    padding: 1.5rem 0.5rem 3rem;
+    scrollbar-width: thin;
+    scrollbar-color: #00a8f3 rgba(15, 23, 42, 0.6);
+}
+
+/* Responsive Grid Columns */
+.card-masonry-grid {
+    --cols: 2;
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    gap: 1.25rem;
+    padding-inline: 0.5rem;
+    padding-block: 2rem 4rem;
+    place-items: start;
+}
+
+@media (min-width: 640px)  { .card-masonry-grid { --cols: 2; } }
+@media (min-width: 900px)  { .card-masonry-grid { --cols: 3; } }
+
+/* Scroll-Driven Slide/Fan-In Animation Keyframes */
+@keyframes masonrySlideIn {
+    from {
+        scale: 0.85;
+        rotate: calc(var(--side, 1) * (6deg * var(--amp, 1)));
+        opacity: 0.4;
+    }
+    to {
+        scale: 1;
+        rotate: 0deg;
+        opacity: 1;
+    }
+}
+
+/* Card Animation Wrapper */
+.card-animation-layer {
+    width: 100%;
+    display: grid;
+    gap: 0.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+        .card-animation-layer {
+            animation: masonrySlideIn linear both;
+            animation-timeline: view();
+            animation-range: cover 0% contain 20%;
+        }
+    }
+}
+
+/* Alternating Transform Origins & Angles based on Grid Position */
+.card-animation-layer:nth-of-type(2n + 1) { transform-origin: 25vw 100%; --side: -1; }
+.card-animation-layer:nth-of-type(2n)     { transform-origin: -25vw 100%; --side: 1; }
+
+@media (min-width: 900px) {
+    .card-animation-layer:nth-of-type(3n + 1) { transform-origin: 50vw 100%; --side: -1; --amp: 2; }
+    .card-animation-layer:nth-of-type(3n + 2) { transform-origin: 0vw 100%; --side: 1; }
+    .card-animation-layer:nth-of-type(3n)     { transform-origin: -50vw 100%; --side: 1; --amp: 2; }
+}
+
+/* Glassmorphic Cyberpunk Card Sizing & 4:3 Ratio Lock */
+.card-animation-layer .card {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.85rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-animation-layer .card:hover {
+    transform: translateY(-5px);
+    border-color: #00a8f3;
+    box-shadow: 0 12px 30px rgba(0, 168, 243, 0.35);
+}
+
+/* 4:3 Aspect Ratio Lock for Card Images */
+.card-animation-layer .card img {
+    width: 100%;
+    aspect-ratio: 4 / 3; /* Strictly enforces 4:3 image dimensions */
+    object-fit: cover;
+    border-radius: 10px;
+    background-color: #020617;
+}
+
+.card-animation-layer .card p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2; /* Added un-prefixed standard property for compatibility */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-animation-layer .card a {
+    color: #00a8f3;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    transition: color 0.2s ease;
+}
+
+.card-animation-layer .card a:hover {
+    color: #38bdf8;
+}
+
+/* Light Mode Overrides */
+body:not(.dark) .lightbox-content.scroll-masonry-modal {
+    background: #ffffff !important;
+    border-color: #cbd5e1 !important;
+}
+
+body:not(.dark) .card-animation-layer .card {
+    background: #f8fafc;
+    border-color: #e2e8f0;
+}
+
+body:not(.dark) .card-animation-layer .card p {
+    color: #475569;
+}
+
+/* ==========================================================================
+   COMPACT MODAL HEADER & LAYOUT HIGHLIGHT FIXES
+   ========================================================================== */
+
+/* 1. Modal Header Container (Slim & Non-Intrusive) */
+.modal-header {
+    text-align: center;
+    padding: 0.5rem 1rem 0.75rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0; /* Prevents header from expanding or growing */
+}
+
+/* 2. Scaled-Down Compact Title */
+.modal-header .gallery-main-title {
+    font-size: 1.35rem !important; /* Scaled down from massive h1 size */
+    font-weight: 700;
+    line-height: 1.25;
+    margin: 0.4rem 0 0.3rem !important;
+    letter-spacing: -0.01em;
+}
+
+/* 3. Scaled-Down Sub-Badge Pill */
+.modal-header .sub-badge {
+    font-size: 0.68rem !important;
+    padding: 0.25rem 0.85rem !important;
+    margin-bottom: 0.2rem !important;
+}
+
+/* 4. Muted Compact Description Text */
+.modal-header .hero-subtext {
+    font-size: 0.82rem !important;
+    line-height: 1.4;
+    color: #94a3b8;
+    max-width: 600px;
+    margin: 0 auto !important;
+}
+
+/* 5. Scroll Stage (Pushes Masonry Layouts Front & Center) */
+.modal-masonry-stage {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem 0.5rem 2rem;
+    scrollbar-width: thin;
+    scrollbar-color: #00a8f3 rgba(15, 23, 42, 0.6);
+}
+
+/* Ensure Layout Images Stand Out Boldly */
+.card-animation-layer .card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    background-color: #020617;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card-animation-layer .card:hover img {
+    border-color: #00a8f3;
+    transform: scale(1.02);
+}
+
+/* ==========================================================================
+   CENTERED HEADER & LOCKED 4:3 CARD RATIO
+   ========================================================================== */
+
+/* 1. Centered Modal Header */
+.modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.75rem 1.5rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0;
+    width: 100%;
+}
+
+.modal-header .sub-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.4rem;
+}
+
+.modal-header .gallery-main-title {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto 0.3rem !important;
+}
+
+.modal-header .hero-subtext {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto !important;
+}
+
+/* 2. Locked 4:3 Aspect Ratio for Card Images */
+.card-animation-layer .card img {
+    width: 100%;
+    aspect-ratio: 4 / 3 !important; /* Enforces clean 4:3 rectangular dimensions */
+    object-fit: cover;
+    border-radius: 12px;
+    background-color: #020617;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* 3. Centered Card Content */
+.card-animation-layer .card {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.card-animation-layer .card p {
+    text-align: center;
+}
+
+.card-animation-layer .card a {
+    justify-content: center;
+}
+
+/* ==========================================================================
+   INFINITELY SCALABLE 4:3 CARD MASONRY GRID
+   ========================================================================== */
+
+/* Fixed Modal Container Height */
+.lightbox-content.scroll-masonry-modal {
+    max-width: 950px !important;
+    width: 92%;
+    max-height: 88vh; /* Locks modal from exceeding viewport */
+    padding: 1.75rem 1.5rem 1rem;
+    background: #090e17 !important;
+    border: 1px solid rgba(0, 168, 243, 0.3) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Prevents whole modal from breaking */
+}
+
+/* Centered Header (Fixed at Top) */
+.modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0.5rem 1rem 0.75rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-shrink: 0; /* Header will never shrink or deform */
+    width: 100%;
+}
+
+.modal-header .sub-badge {
+    margin: 0 auto 0.3rem !important;
+}
+
+.modal-header .gallery-main-title {
+    font-size: 1.35rem !important;
+    font-weight: 700;
+    text-align: center;
+    margin: 0.2rem auto !important;
+}
+
+.modal-header .hero-subtext {
+    font-size: 0.82rem !important;
+    text-align: center;
+    margin: 0 auto !important;
+}
+
+/* Scrollable Container for Infinite Cards */
+.modal-masonry-stage {
+    flex-grow: 1;
+    overflow-y: auto; /* Adds smooth internal scrollbar for infinite items */
+    padding: 1rem 0.5rem 2.5rem;
+    scrollbar-width: thin;
+    scrollbar-color: #00a8f3 rgba(15, 23, 42, 0.6);
+}
+
+/* Auto-Filling Responsive Grid for Unlimited Cards */
+.card-masonry-grid {
+    display: grid;
+    /* Auto-fits columns; dynamically creates new rows as you add cards */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); 
+    gap: 1.25rem;
+    padding-inline: 0.25rem;
+    padding-block: 1rem 2rem;
+    align-items: start;
+}
+
+/* Card Styling & Strict 4:3 Image Ratio Lock */
+.card-animation-layer .card {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0.75rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.card-animation-layer .card:hover {
+    transform: translateY(-4px);
+    border-color: #00a8f3;
+}
+
+/* Image Aspect Ratio Lock */
+.card-animation-layer .card img {
+    width: 100%;
+    aspect-ratio: 4 / 3 !important; /* Forces all uploaded images to uniform 4:3 size */
+    object-fit: cover;
+    border-radius: 12px;
+    background-color: #020617;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.card-animation-layer .card p {
+    color: #94a3b8;
+    font-size: 0.82rem;
+    line-height: 1.4;
+    margin: 0;
+    text-align: center;
+}
+
+.card-animation-layer .card a {
+    color: #00a8f3;
+    font-weight: 700;
+    font-size: 0.82rem;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+/* ==========================================================================
+   MODAL MASONRY SPACING & ALIGNMENT FIXES
+   ========================================================================== */
+
+/* 1. Compact Modal Container Padding */
+.lightbox-content.scroll-masonry-modal {
+    padding: 1.25rem 1.25rem 0.5rem !important;
+}
+
+/* 2. Tightened Header Spacing */
+.modal-header {
+    padding: 0 0 0.6rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.modal-header .sub-badge {
+    margin-bottom: 0.25rem !important;
+}
+
+.modal-header .gallery-main-title {
+    margin: 0.15rem auto !important;
+}
+
+.modal-header .hero-subtext {
+    margin-top: 0.15rem !important;
+}
+
+/* 3. Optimized Masonry Stage & Scroll Bar Positioning */
+.modal-masonry-stage {
+    padding: 0.5rem 0.25rem 1rem !important;
+}
+
+.modal-masonry-stage section {
+    padding: 0 !important;
+}
+
+/* 4. Column Grid Gap & Outer Boundaries Fix */
+#modalMasonryGrid {
+    gap: 0.85rem !important; /* Reduces large horizontal gaps between columns */
+    width: 100% !important;
+}
+
+#modalMasonryGrid figure {
+    margin-bottom: 0.85rem !important; /* Matches vertical gap to horizontal gap */
+}
+
+/* ==========================================================================
+   MODAL MASONRY SPACING & DYNAMIC CATEGORY IMAGE STACKING LOCKS
+   ========================================================================== */
+
+/* 1. Compact Modal Container Padding */
+.lightbox-content.scroll-masonry-modal {
+    padding: 1.25rem 1.25rem 0.5rem !important;
+}
+
+/* 2. Tightened Modal Header Spacing */
+.modal-header {
+    padding: 0 0 0.6rem !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.modal-header .sub-badge {
+    font-size: 0.68rem !important;
+    padding: 0.25rem 0.85rem !important;
+    margin: 0 auto 0.25rem !important;
+}
+
+.modal-header .gallery-main-title {
+    font-size: 1.35rem !important;
+    font-weight: 700;
+    text-align: center;
+    margin: 0.15rem auto !important;
+}
+
+.modal-header .hero-subtext {
+    font-size: 0.82rem !important;
+    line-height: 1.4;
+    text-align: center;
+    margin: 0.15rem auto 0 !important;
+}
+
+/* 3. Optimized Scroll Stage */
+.modal-masonry-stage {
+    padding: 0.5rem 0.25rem 1rem !important;
+}
+
+.modal-masonry-stage section {
+    padding: 0 !important;
+}
+
+/* 4. Column Masonry Spacing (Supports Unique Image Sets Per Category) */
+#modalMasonryGrid {
+    gap: 0.85rem !important; /* Uniform horizontal gap between columns */
+    width: 100% !important;
+}
+
+#modalMasonryGrid figure {
+    margin-bottom: 0.85rem !important; /* Uniform vertical gap between stacked images */
+    break-inside: avoid !important;   /* Prevents images from splitting across columns */
+}
+
+/* 5. Preserves Original Native Image Heights Without Cropping */
+#modalMasonryGrid figure img {
+    aspect-ratio: auto !important;
+    display: block;
+    width: 100%;
+    height: auto;
+}

@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <title>
+  </title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts Imports: Poppins -->
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet" />
+  <style type="text/css">/* CSS RESET & FONTS */
+   body {
+	margin: 0;
+	padding: 0;
+	background: linear-gradient(165deg, #0043A4 0%, #0066FF 30%, #3B82F6 60%, #002266 100%);
+	font-family: 'Poppins', Arial, Helvetica, sans-serif;
+	color: #0F172A;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+   }
+   table {
+	border-spacing: 0;
+	border-collapse: collapse;
+   }
+   td {
+	padding: 0;
+   }
+   img {
+	border: 0;
+	line-height: 100%;
+	outline: none;
+	text-decoration: none;
+	max-width: 100%;
+	height: auto;
+   }
+/* CONTAINER (STRICT 600PX WIDTH WITH GRADIENT CANVAS & GLOW EFFECTS) */
+   .email-container {
+    max-width: 600px !important;
+    width: 100% !important;
+    margin: 40px auto;
+    background: linear-gradient(180deg, #ffffff 0%, #F0F6FF 40%, #E2EEFF 100%);
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 34, 102, 0.4), 0 0 40px rgba(59, 130, 246, 0.3);
+    position: relative;
+    outline: 3px solid rgb(0, 5, 144);
+    outline-offset: -3px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+   }
+   /* GLASSMORPHISM BUTTONS WITH GLOW HIGHLIGHTS */
+   .btn-glass-primary {
+	background: linear-gradient(135deg, #0052FF 0%, #0033CC 100%);
+	color: #ffffff !important;
+	display: inline-block;
+	padding: 18px 40px;
+	border-radius: 50px;
+	font-family: 'Poppins', Arial, sans-serif;
+	font-weight: 800;
+	font-size: 14px;
+	letter-spacing: 0.8px;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	box-shadow: 0 10px 25px rgba(0, 82, 255, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+   }
+   .btn-glass-secondary {
+	background: rgba(0, 82, 255, 0.85);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	color: #FFFFFF !important;
+	display: inline-block;
+	padding: 16px 36px;
+	border-radius: 50px;
+	font-family: 'Poppins', Arial, sans-serif;
+	font-weight: 700;
+	font-size: 13px;
+	letter-spacing: 0.6px;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	box-shadow: 0 8px 20px rgba(0, 82, 255, 0.3), inset 0 1px 3px rgba(255, 255, 255, 0.5);
+	border: 1px solid rgba(255, 255, 255, 0.4);
+   }
+   /* FROSTED GLASS CARDS */
+   .glass-card {
+	background: rgba(255, 255, 255, 0.75);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
+	border-radius: 24px;
+	padding: 24px;
+	margin-bottom: 18px;
+	border: 1px solid rgba(255, 255, 255, 0.9);
+	box-shadow: 0 10px 30px rgba(0, 82, 255, 0.08), inset 0 1px 1px rgba(255, 255, 255, 1);
+   }
+   /* STAT CALLOUT GLASS BOX */
+   .stat-glass-card {
+	background: linear-gradient(135deg, rgba(0, 82, 255, 0.08) 0%, rgba(59, 130, 246, 0.18) 100%);
+	backdrop-filter: blur(20px);
+	-webkit-backdrop-filter: blur(20px);
+	border-radius: 28px;
+	padding: 28px 20px;
+	margin: 24px 0;
+	border: 1.5px solid rgba(0, 82, 255, 0.2);
+	box-shadow: 0 12px 32px rgba(0, 82, 255, 0.12), inset 0 2px 4px rgba(255, 255, 255, 0.8);
+   }
+   /* IMAGE PLACEHOLDERS WITH NEON LIGHTING FRAME */
+   .img-frame {
+	border-radius: 28px;
+	overflow: hidden;
+	border: 2px solid rgba(255, 255, 255, 0.8);
+	box-shadow: 0 16px 36px rgba(0, 67, 164, 0.22), inset 0 0 15px rgba(59, 130, 246, 0.3);
+	background: linear-gradient(135deg, #0052FF 0%, #002266 100%);
+   }
+   /* MOBILE RESPONSIVE MEDIA QUERIES */
+   @media screen and (max-width: 600px) {
+	.email-container {
+	 border-radius: 0px !important;
+	 margin: 0 auto !important;
+	}
+	.mobile-padding {
+	 padding-left: 20px !important;
+	 padding-right: 20px !important;
+	}
+	.mobile-title span {
+	 font-size: 20px !important;
+	}
+	.mobile-title span.big-title {
+	 font-size: 48px !important;
+	}
+	.btn-glass-primary, .btn-glass-secondary {
+	 display: block !important;
+	 width: auto !important;
+	 padding: 16px 20px !important;
+	 font-size: 13px !important;
+	}
+	.stat-col {
+	 display: block !important;
+	 width: 100% !important;
+	 text-align: center !important;
+	 padding-left: 0 !important;
+	 margin-bottom: 12px;
+	}
+   }
+  </style>
+  <link href="https://datumstructspteltd1.od1.vtiger.com//layouts/v9/skins/vtiger/custom_ckeditor_fonts.css" id="v9FontStyle" rel="stylesheet" type="text/css" />
+ </head>
+ <body style="height: auto; min-height: auto;">
+  <table border="0" cellpadding="0" cellspacing="0" style="padding: 40px 0;" width="100%">
+   <tbody>
+	<tr>
+	 <td align="center">
+	  <!-- MAIN EMAIL CONTAINER (600PX FIXED WIDTH) -->
+	  <table border="0" cellpadding="0" cellspacing="0" class="email-container" width="600">
+	   <tbody>
+		<!-- TOP LOGO HEADER -->
+		<tr>
+		 <td align="center" style="padding: 36px 20px 16px 20px;">
+		  <!-- Logo Placeholder -->
+		  <img alt="Datumstruct Logo" src="https://datumstructspteltd1.od1.vtiger.com/public.php?type=kcfinder&amp;image=/images/DSTechLogo%28OnLight%29%5B230912%5D.png" style="display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));" width="190" />
+		 </td>
+		</tr>
+		<!-- HERO HEADLINE & CHALLENGE -->
+		<tr>
+		 <td align="center" class="mobile-padding" style="padding: 16px 36px 28px 36px;">
+		  <h1 class="mobile-title" style="color: #00184b; margin: 0 0 18px 0; letter-spacing: -0.5px; text-transform: uppercase;">
+		   <span style="display: block; font-size: 28px; line-height: 0.95; font-weight: 900; margin-bottom: 2px; background: linear-gradient(90deg, #0088ff, #050052); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Work Smarter, Lift Safer 
+		   </span> 
+		   <span style="display: block; font-size: 22px; line-height: 1.05; font-weight: 700; margin-bottom: 10px; background: linear-gradient(90deg, #0088ff, #050052); -webkit-background-clip: text; -webkit-text-fill-color: transparent;"> Transform Heavy IT Deployments with 
+		   </span> 
+		   <span class="big-title" style="
+										  display: inline-block; 
+										  font-size: 75px; 
+										  line-height: 0.85; 
+										  font-weight: 900; 
+										  margin-top: -4px; 
+										  background-image: linear-gradient(90deg, #050052, #0088ff);
+										  -webkit-background-clip: text; 
+										  -webkit-text-fill-color: transparent; 
+										  background-clip: text; 
+										  color: transparent;"> ServerLIFT&reg; 
+		   </span>
+		  </h1>
+		  <p style="color: #001127; font-size: 15px; line-height: 1.4; margin: 0 0 20px 0; font-weight: 400;">Manual server handling is a quiet drain on data center efficiency. Lifting heavy switches and blade servers through tight aisles puts your expensive IT infrastructure and your engineering team at constant risk of damage and workplace injury.
+		  </p>
+		  <!-- PRIMARY CTA -->
+		  <a class="btn-glass-primary" href="https://www.datumstruct-tech.com/data-center-safety-tools/serverlift" style="font-size: 1rem; font-weight: 800; padding: 0.5rem 1rem; display: inline-block; text-decoration: none;">Optimize your Data Center Operations 
+		  </a>
+		 </td>
+		</tr>
+		<!-- HERO PRODUCT VISUAL IMAGE PLACEHOLDER -->
+		<tr>
+		 <td align="center" class="mobile-padding" style="padding: 0 24px 28px 24px;">
+		  <!-- 3-Column Image Layout with Border, Shadow & Rounded Corners -->
+		  <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="max-width: 520px; width: 100%;">
+		   <tbody>
+			<tr>
+			 <!-- Column 1 -->
+			 <td align="center" style="padding-right: 6px;" valign="middle" width="33.33%">
+			  <img alt="Rail Insertion" src="https://datumstructspteltd1.od1.vtiger.com/public.php?type=kcfinder&amp;image=/images/ImageSep16%2C2026%2C02_06_11PM.png" style="display: block; width: 100%; max-width: 160px; height: auto; border: 1px solid rgba(0, 82, 255, 0.2); border-radius: 16px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);" />
+			 </td>
+			 <!-- Column 2 -->
+			 <td align="center" style="padding-left: 3px; padding-right: 3px;" valign="middle" width="33.33%">
+			  <img alt="Micro Adjustment" src="https://datumstructspteltd1.od1.vtiger.com/public.php?type=kcfinder&amp;image=/images/ImageSep16%2C2026%2C02_04_37PM.png" style="display: block; width: 100%; max-width: 160px; height: auto; border: 1px solid rgba(0, 82, 255, 0.2); border-radius: 16px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);" />
+			 </td>
+			 <!-- Column 3 -->
+			 <td align="center" style="padding-left: 6px;" valign="middle" width="33.33%">
+			  <img alt="Controlled Lift" src="https://datumstructspteltd1.od1.vtiger.com/public.php?type=kcfinder&amp;image=/images/ImageSep16%2C2026%2C02_05_24PM.png" style="display: block; width: 100%; max-width: 160px; height: auto; border: 1px solid rgba(0, 82, 255, 0.2); border-radius: 16px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);" />
+			 </td>
+			</tr>
+		   </tbody>
+		  </table>
+		 </td>
+		</tr>
+		<!-- BODY / GUIDE SECTION -->
+		<tr>
+		 <td align="center" class="mobile-padding" style="padding: 8px 36px 28px 36px;">
+		  <h2 style="margin: 0 0 14px 0; letter-spacing: -0.3px; text-transform: uppercase;">
+		   <!-- Pop-out Gold Standard Line -->
+		   <span style="
+						display: block; 
+						font-size: 45px; 
+						line-height: 1.1; 
+						font-weight: 900; 
+						margin-bottom: 4px;
+						background: linear-gradient(90deg, #0038c5, #0031e0, #1234f3); 
+						-webkit-background-clip: text; 
+						-webkit-text-fill-color: transparent; 
+						background-clip: text; 
+						-webkit-text-stroke: .5px #0c0c0c;
+						">THE GOLD STANDARD 
+		   </span> 
+		   <!-- Secondary Line --> 
+		   <span style="display: block; color: #000d20; font-size: 18px; line-height: 1.05; font-weight: 600; margin-top: -6px; margin-bottom: 30px;"> for Safe, Single-Operator Data Center Handling 
+		   </span>
+		  </h2>
+		  <p style="color: #001129; font-size: 15px; line-height: 1.65; margin: 0; text-align: justify;">ServerLIFT&reg; is the safety-certified, high-density lifting solution designed specifically for modern data centers. Transform complex, multi-person installations into a fast, effortless, single-operator process.
+		  </p>
+		 </td>
+		</tr>
+		<!-- VALUE PROPOSITIONS (GLASS CARD SECTION) -->
+		<tr>
+		 <td class="mobile-padding" style="padding: 0 24px 20px 24px; background: linear-gradient(180deg, rgba(240, 246, 255, 0.6) 0%, rgba(226, 238, 255, 0.8) 100%);">
+		  <div style="padding-top: -28px;">
+		  </div>
+		  <!-- Card 1 -->
+		  <div class="glass-card">
+		   <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+			<!-- Shield/Safety Icon -->
+			<svg fill="none" height="26" style="flex-shrink: 0;" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"> 
+			 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="url(#blue-teal-grad)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"> 
+			 </path> 
+			 <defs> 
+			  <lineargradient id="blue-teal-grad" x1="0%" x2="100%" y1="0%" y2="0%"> 
+			   <stop offset="0%" stop-color="#0052FF"> 
+			   </stop> 
+			   <stop offset="100%" stop-color="#00D2FF"> 
+			   </stop> 
+			  </lineargradient> 
+			 </defs> 
+			</svg> 
+			<span style="
+						 font-size: 25px; 
+						 font-weight: 800; 
+						 text-transform: uppercase;
+						 background: linear-gradient(90deg, #0052FF, #00D2FF); 
+						 -webkit-background-clip: text; 
+						 -webkit-text-fill-color: transparent; 
+						 background-clip: text; 
+						 color: #0052FF;
+						 line-height: 1.2;
+						 "> Zero-Injury Workflows 
+			</span>
+		   </div>
+		   <p style="color: #0e0d0d; font-size: 14px; line-height: 1.6; margin: 0;">Certified safety enclosures and integrated winch locks protect technicians from physical strain and pinch hazards.
+		   </p>
+		  </div>
+		  <!-- Card 2 -->
+		  <div class="glass-card">
+		   <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+			<!-- Target/Alignment Icon -->
+			<svg fill="none" height="26" style="flex-shrink: 0;" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"> 
+			 <circle cx="12" cy="12" r="9" stroke="url(#blue-teal-grad)" stroke-width="2.2"> 
+			 </circle> 
+			 <circle cx="12" cy="12" fill="url(#blue-teal-grad)" r="3"> 
+			 </circle> 
+			 <path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="url(#blue-teal-grad)" stroke-linecap="round" stroke-width="2.2"> 
+			 </path> 
+			</svg> 
+			<span style="
+						 font-size: 25px; 
+						 font-weight: 800; 
+						 text-transform: uppercase;
+						 background: linear-gradient(90deg, #0052FF, #00D2FF); 
+						 -webkit-background-clip: text; 
+						 -webkit-text-fill-color: transparent; 
+						 background-clip: text; 
+						 color: #0052FF;
+						 line-height: 1.2;
+						 "> Pinpoint Rack Alignment 
+			</span>
+		   </div>
+		   <p style="color: #0e0d0d; font-size: 14px; line-height: 1.6; margin: 0;">Smooth side-shifting and front-loading technology allow perfect alignment into server rails on the first try.
+		   </p>
+		  </div>
+		  <!-- Card 3 -->
+		  <div class="glass-card">
+		   <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+			<!-- Layout/Space Utilization Icon -->
+			<svg fill="none" height="26" style="flex-shrink: 0;" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"> 
+			 <rect height="18" rx="4" stroke="url(#blue-teal-grad)" stroke-width="2.2" width="18" x="3" y="3"> 
+			 </rect> 
+			 <path d="M3 9h18M9 21V9" stroke="url(#blue-teal-grad)" stroke-linecap="round" stroke-width="2.2"> 
+			 </path> 
+			</svg> 
+			<span style="
+						 font-size: 25px; 
+						 font-weight: 800; 
+						 text-transform: uppercase;
+						 background: linear-gradient(90deg, #0052FF, #00D2FF); 
+						 -webkit-background-clip: text; 
+						 -webkit-text-fill-color: transparent; 
+						 background-clip: text; 
+						 color: #0052FF;
+						 line-height: 1.2;
+						 "> Maximum Space Utilization 
+			</span>
+		   </div>
+		   <p style="color: #0e0d0d; font-size: 14px; line-height: 1.6; margin: 0;">Compact footprint easily navigates standard 36-inch doors and narrow containment aisles without outriggers.
+		   </p>
+		  </div>
+		  <!-- Card 4 -->
+		  <div class="glass-card">
+		   <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+			<!-- Weight/Capacity Icon -->
+			<svg fill="none" height="26" style="flex-shrink: 0;" viewbox="0 0 24 24" width="26" xmlns="http://www.w3.org/2000/svg"> 
+			 <path d="M6 20h12l2-11H4l2 11z" stroke="url(#blue-teal-grad)" stroke-linejoin="round" stroke-width="2.2"> 
+			 </path> 
+			 <path d="M10 9V6a2 2 0 014 0v3" stroke="url(#blue-teal-grad)" stroke-linecap="round" stroke-width="2.2"> 
+			 </path> 
+			 <circle cx="12" cy="15" fill="url(#blue-teal-grad)" r="1.5"> 
+			 </circle> 
+			</svg> 
+			<span style="
+						 font-size: 25px; 
+						 font-weight: 800; 
+						 text-transform: uppercase;
+						 background: linear-gradient(90deg, #0052FF, #00D2FF); 
+						 -webkit-background-clip: text; 
+						 -webkit-text-fill-color: transparent; 
+						 background-clip: text; 
+						 color: #0052FF;
+						 line-height: 1.2;
+						 "> Unmatched Capacity 
+			</span>
+		   </div>
+		   <p style="color: #0e0d0d; font-size: 14px; line-height: 1.6; margin: 0;">Safely load, move, and mount payloads ranging from 350 lbs up to 1,000 lbs with complete stability.
+		   </p>
+		  </div>
+		  <!-- SECONDARY IMAGE PLACEHOLDER -->
+		 </td>
+		</tr>
+		<tr>
+		 <td class="mobile-padding" style="padding: 10px 24px 20px 24px;">
+		  <div class="img-frame">
+		   <img alt="Data Center Equipment Alignment" src="https://datumstructspteltd1.od1.vtiger.com/public.php?type=kcfinder&amp;image=/images/ImageSep16%2C2026%2C027_06_11PM.png" style="display: block; width: 100%; border-radius: 26px;" />
+		  </div>
+		 </td>
+		</tr>
+		<!-- MID-PAGE SECONDARY CTA -->
+		<tr>
+		 <td align="center" class="mobile-padding" style="padding: 12px 24px 28px 24px;">
+		  <a class="btn-glass-secondary" href="https://tally.so/r/3XZQBz" style="text-decoration: none; display: inline-block;" target="_blank">Download ServerLIFT&reg; Spec Sheet 
+		  </a>
+		 </td>
+		</tr>
+		<!-- DATA CALLOUT STAT (GLASS STAT BOX) -->
+		<tr>
+		 <td class="mobile-padding" style="padding: 0 24px 20px 24px;">
+		  <div class="stat-glass-card">
+		   <table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody>
+			 <tr>
+			  <td align="center" class="stat-col" valign="middle" width="38%">
+			   <span style="font-size: 55px; font-weight: 900; color: #0052FF; line-height: 1; text-shadow: 0 2px 10px rgba(0,82,255,0.2);">1,000 
+			   </span> 
+			   <span style="font-size: 20px; font-weight: 800; color: #0052FF; display: block; letter-spacing: 1px; margin-top: 4px;">LBS 
+			   </span>
+			  </td>
+			  <td align="left" class="stat-col" style="padding-left: 18px;" valign="middle" width="62%">
+			   <span style="font-size: 19px; font-weight: 800; color: #0F172A; display: block; line-height: 1.3;">Maximum Heavy Payload Capacity 
+			   </span>
+			   <p style="color: #272f3a; font-size: 13px; line-height: 1.5; margin: 6px 0 0 0;">Safely load, move, and mount heavy servers with complete stability.
+			   </p>
+			  </td>
+			 </tr>
+			</tbody>
+		   </table>
+		  </div>
+		 </td>
+		</tr>
+		<!-- WHAT WE DO / PLAN SECTION -->
+		<tr>
+		 <td class="mobile-padding" style="padding: 16px 48px 36px 48px;">
+		  <h3 style="color: #0052FF; font-size: 25px; font-weight: 800; margin: 0 0 20px 0; text-align: center; text-transform: uppercase; background: linear-gradient(90deg, #0052FF, #00D2FF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">How We Support Your Facility?
+		  </h3>
+		  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+		   <tbody>
+			<!-- Step 1: Assess -->
+			<tr>
+			 <td style="padding-bottom: 20px;">
+			  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+			   <!-- Checklist / Assessment Icon -->
+			   <svg fill="none" height="22" style="flex-shrink: 0;" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"> 
+				<path d="M9 11l3 3L22 4" stroke="url(#support-grad)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"> 
+				</path> 
+				<path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="url(#support-grad)" stroke-linecap="round" stroke-width="2.2"> 
+				</path> 
+				<defs> 
+				 <lineargradient id="support-grad" x1="0%" x2="100%" y1="0%" y2="0%"> 
+				  <stop offset="0%" stop-color="#0052FF"> 
+				  </stop> 
+				  <stop offset="100%" stop-color="#00D2FF"> 
+				  </stop> 
+				 </lineargradient> 
+				</defs> 
+			   </svg> 
+			   <strong style="color: #0052FF; font-size: 16px; text-transform: uppercase;">Assess: 
+			   </strong>
+			  </div>
+			  <p style="color: #334155; font-size: 14px; line-height: 1.6; margin: 0;">We evaluate your facility layout, rack heights, and hardware weight profiles.
+			  </p>
+			 </td>
+			</tr>
+			<!-- Step 2: Deploy -->
+			<tr>
+			 <td style="padding-bottom: 20px;">
+			  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+			   <!-- Rocket / Deployment Icon -->
+			   <svg fill="none" height="22" style="flex-shrink: 0;" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"> 
+				<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z" stroke="url(#support-grad)" stroke-linecap="round" stroke-width="2.2"> 
+				</path> 
+				<path d="M12 15l-3-3m0 0l3-3m-3 3h12M15 9l-3-3" stroke="url(#support-grad)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"> 
+				</path> 
+			   </svg> 
+			   <strong style="color: #0052FF; font-size: 16px; text-transform: uppercase;">Deploy: 
+			   </strong>
+			  </div>
+			  <p style="color: #334155; font-size: 14px; line-height: 1.6; margin: 0;">We recommend and supply the ideal ServerLIFT&reg; model and accessories for your space.
+			  </p>
+			 </td>
+			</tr>
+			<!-- Step 3: Support -->
+			<tr>
+			 <td style="padding-bottom: 16px;">
+			  <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+			   <!-- Headset / Customer Support Icon -->
+			   <svg fill="none" height="22" style="flex-shrink: 0;" viewbox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"> 
+				<path d="M3 18v-6a9 9 0 0118 0v6" stroke="url(#support-grad)" stroke-linecap="round" stroke-width="2.2"> 
+				</path> 
+				<path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3v5zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3v5z" stroke="url(#support-grad)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"> 
+				</path> 
+			   </svg> 
+			   <strong style="color: #0052FF; font-size: 16px; text-transform: uppercase;">Support: 
+			   </strong>
+			  </div>
+			  <p style="color: #334155; font-size: 14px; line-height: 1.6; margin: 0;">Receive full local technical service, maintenance, and operational guidance from Datumstruct.
+			  </p>
+			 </td>
+			</tr>
+		   </tbody>
+		  </table>
+		 </td>
+		</tr>
+		<!-- FINAL CONVERSION FOOTER SECTION -->
+		<tr>
+		 <td align="center" class="mobile-padding" style="background: linear-gradient(180deg, #0052FF 0%, #0033CC 100%); padding: 40px 28px; border-radius: 0 0 40px 40px; box-shadow: inset 0 2px 10px rgba(255,255,255,0.3);">
+		  <h3 style="color: #FFFFFF; font-size: 24px; font-weight: 800; margin: 0 0 20px 0; padding-top: 0; text-shadow: 0 2px 4px rgba(0,0,0,0.2); text-transform: uppercase; line-height: 1.2;">Upgrade to Safe, Effortless
+		   <br />
+		   <span class="footer-subhead" style="font-size: 38px; color: #f9f9fb; display: block; margin-top: 4px;">Data Center Lifting 
+		   </span>
+		  </h3>
+		  <!-- PRIMARY CTA FOOTER -->
+		  <a class="btn-glass-primary" href="mailto:marketing_ph@datumstruct.com?subject=Schedule%20for%20Demo%20Request" style="background: #FFFFFF !important; color: #0052FF !important; box-shadow: 0 10px 25px rgba(0,0,0,0.25); text-decoration: none; display: inline-block;">Schedule for Demo 
+		  </a>
+		  <p style="color: rgba(255, 255, 255, 0.85); font-size: 10px; margin: 20px 0 0 0; font-weight: 500;">Datumstruct Tech &ndash; Your Value Added Solution Provider for Data Centre Infrastructure Management
+		  </p>
+		  <!-- WEBSITE & SOCIAL MEDIA LINKS WITH ICONS -->
+		  <div style="margin-top: 24px; font-size: 13px; font-weight: 600; color: #FFFFFF; display: flex; justify-content: center; align-items: center; gap: 8px; flex-wrap: wrap;">
+		   <!-- Website -->
+		   <a href="https://www.datumstruct.com" style="color: #FFFFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;" target="_blank">
+			<svg fill="none" height="16" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"> 
+			 <circle cx="12" cy="12" r="10"> 
+			 </circle> 
+			 <line x1="2" x2="22" y1="12" y2="12"> 
+			 </line> 
+			 <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"> 
+			 </path> 
+			</svg> 
+			<span>Website 
+			</span> 
+		   </a> 
+		   <span style="color: rgba(255, 255, 255, 0.5);">&nbsp;|&nbsp; 
+		   </span> 
+		   <!-- Facebook --> 
+		   <a href="http://www.facebook.com/datumstructph/" style="color: #FFFFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;" target="_blank"> 
+			<svg fill="none" height="16" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"> 
+			 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"> 
+			 </path> 
+			</svg> 
+			<span>Facebook 
+			</span> 
+		   </a> 
+		   <span style="color: rgba(255, 255, 255, 0.5);">&nbsp;|&nbsp; 
+		   </span> 
+		   <!-- LinkedIn --> 
+		   <a href="http://www.linkedin.com/company/datumstructph" style="color: #FFFFFF; text-decoration: none; display: inline-flex; align-items: center; gap: 5px;" target="_blank"> 
+			<svg fill="none" height="16" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16"> 
+			 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"> 
+			 </path> 
+			 <rect height="12" width="4" x="2" y="9"> 
+			 </rect> 
+			 <circle cx="4" cy="4" r="2"> 
+			 </circle> 
+			</svg> 
+			<span>LinkedIn 
+			</span> 
+		   </a> 
+		   <!-- DIVIDER LINE -->
+		   <div style="margin: 24px 0 20px 0; border-top: 1px solid rgba(255, 255, 255, 0.2); width: 100%;">
+		   </div>
+		   <!-- CONTACT & ADDRESS DETAILS FROM IMAGE -->
+		   <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="width: 100%; max-width: 520px; font-size: 12px; color: rgba(255, 255, 255, 0.9); line-height: 1.6;">
+			<tbody>
+			 <tr>
+			  <!-- Left Column: Physical Address -->
+			  <td align="left" style="padding-bottom: 16px;" valign="top">28-A Chatham House 116
+			   <br />
+			   Herrera Cor. Valero St., Salcedo Village,
+			   <br />
+			   Makati City Philippines 1227
+			  </td>
+			  <!-- Right Column: Contact Details -->
+			  <td align="right" style="padding-bottom: 16px;" valign="top">
+			   <a href="tel:+6581236669" style="color: #FFFFFF; text-decoration: none;">(63) 5310 5708 
+			   </a>
+			   <br />
+			   <a href="https://www.datumstruct-tech.com/" style="color: #FFFFFF; text-decoration: underline;" target="_blank">https://www.datumstruct-tech.com/ 
+			   </a>
+			   <br />
+			   <a href="mailto:marketing_ph@datumstruct.com" style="color: #FFFFFF; text-decoration: none;">marketing_ph@datumstruct.com 
+			   </a>
+			  </td>
+			 </tr>
+			 <!-- Footer Sub-Notice & Unsubscribe -->
+			 <tr>
+			  <td align="center" colspan="2" style="font-size: 11px; color: rgba(255, 255, 255, 0.65); padding-top: 8px;">You are receiving this email because you signed up at our website.
+			   <p id="unsubscribeLink">If you wish to unsubscribe, Please 
+				<a href="http://unsubscribe/">click here 
+				</a>
+			   </p>
+			  </td>
+			 </tr>
+			</tbody>
+		   </table>
+		  </div>
+		 </td>
+		</tr>
+	   </tbody>
+	  </table>
+	 </td>
+	</tr>
+   </tbody>
+  </table>
+ </body>
+</html>
