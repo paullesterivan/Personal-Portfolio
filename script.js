@@ -3,10 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = document.getElementById('skillsTrack');
     const prevBtn = document.getElementById('skillsPrevBtn');
     const nextBtn = document.getElementById('skillsNextBtn');
+    const stage = document.getElementById('skillsStage');
 
     if (track && prevBtn && nextBtn) {
         const cards = Array.from(track.querySelectorAll('.cylinder-card'));
         let currentIndex = 0;
+        let autoSlideTimer = null;
+        const AUTO_PLAY_INTERVAL = 5000; // 5 seconds
 
         function updateCarousel() {
             const total = cards.length;
@@ -32,31 +35,66 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        nextBtn.addEventListener('click', () => {
+        function nextSlide() {
             currentIndex = (currentIndex + 1) % cards.length;
             updateCarousel();
+        }
+
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+            updateCarousel();
+        }
+
+        // Timer Control Functions
+        function startAutoPlay() {
+            stopAutoPlay();
+            autoSlideTimer = setInterval(nextSlide, AUTO_PLAY_INTERVAL);
+        }
+
+        function stopAutoPlay() {
+            if (autoSlideTimer) {
+                clearInterval(autoSlideTimer);
+                autoSlideTimer = null;
+            }
+        }
+
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+
+        // Button Click Handlers
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetAutoPlay();
         });
 
         prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-            updateCarousel();
+            prevSlide();
+            resetAutoPlay();
         });
 
         // Click side card to switch directly
         cards.forEach((card, index) => {
             card.addEventListener('click', () => {
                 if (card.classList.contains('next')) {
-                    currentIndex = (currentIndex + 1) % cards.length;
-                    updateCarousel();
+                    nextSlide();
+                    resetAutoPlay();
                 } else if (card.classList.contains('prev')) {
-                    currentIndex = (currentIndex - 1 + cards.length) % cards.length;
-                    updateCarousel();
+                    prevSlide();
+                    resetAutoPlay();
                 }
             });
         });
 
-        // Initial render
+        // Pause auto-play on hover so users can read content easily
+        if (stage) {
+            stage.addEventListener('mouseenter', stopAutoPlay);
+            stage.addEventListener('mouseleave', startAutoPlay);
+        }
+
+        // Initial render & start timer
         updateCarousel();
+        startAutoPlay();
     }
 });
-
