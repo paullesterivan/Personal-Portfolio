@@ -1401,3 +1401,23 @@ html, body {
     display: block !important;
     border-radius: inherit !important;
 }
+
+/* ====================================================
+   HERO AVATAR EMBLEM STYLING
+   ==================================================== */
+
+.avatar-box {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+
+.avatar-box .avatar-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Fits image perfectly inside rounded avatar box */
+    display: block !important;
+    border-radius: inherit !important;
+}
