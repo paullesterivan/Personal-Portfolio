@@ -1221,3 +1221,52 @@ html, body {
         max-height: 80vh !important;
     }
 }
+
+/* ====================================================
+   THEME TOGGLE BUTTON FIX (Square Shape & Icon Visibility)
+   ==================================================== */
+
+/* Force Theme Toggle to be a perfect square */
+#themeToggle, 
+.icon-btn {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+    padding: 0 !important;
+    border-radius: 10px !important; /* Clean square with rounded corners */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Theme Icon Display Rules */
+/* In Dark Mode (body.dark): Show Sun icon, Hide Moon icon */
+body.dark #themeToggle .icon-sun,
+body.dark .icon-btn .icon-sun {
+    display: inline-block !important;
+    color: #f59e0b !important; /* Sun Amber Glow */
+    font-size: 1.1rem !important;
+}
+
+body.dark #themeToggle .icon-moon,
+body.dark .icon-btn .icon-moon {
+    display: none !important;
+}
+
+/* In Light Mode: Show Moon icon, Hide Sun icon */
+body:not(.dark) #themeToggle .icon-moon,
+body:not(.dark) .icon-btn .icon-moon {
+    display: inline-block !important;
+    color: #38bdf8 !important; /* Moon Sky Glow */
+    font-size: 1.1rem !important;
+}
+
+body:not(.dark) #themeToggle .icon-sun,
+body:not(.dark) .icon-btn .icon-sun {
+    display: none !important;
+}
