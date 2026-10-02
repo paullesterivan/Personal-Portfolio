@@ -56,7 +56,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // 4. SUB-CATEGORY & PDF / HTML / IMAGE ASSET DATABASE
+    // DYNAMIC / INFINITE FOLDER IMAGE LOADER HELPER
+    // ----------------------------------------------------
+    /**
+     * Generates an array of image objects up to maxLimit.
+     * Set maxLimit high (e.g., 50) so you can drop as many photos as you want into folders.
+     */
+    function generateImageSet(folder, prefix, ext, maxLimit = 50) {
+        const images = [];
+        for (let i = 1; i <= maxLimit; i++) {
+            images.push({
+                img: `Images/${folder}/${prefix}${i}.${ext}`,
+                alt: `${prefix} ${i}`,
+                width: 500,
+                height: 400
+            });
+        }
+        return images;
+    }
+
+    // ----------------------------------------------------
+    // 4. SUB-CATEGORY & ASSET DATABASE
     // ----------------------------------------------------
     const lightboxModal = document.getElementById('lightboxModal');
     const lightboxOverlay = document.getElementById('lightboxOverlay');
@@ -67,34 +87,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxDesc = document.getElementById('lightboxDesc');
 
     const categoryAssetDatabase = {
-        // Billboard & Banner Layouts
-        billboards: [
-            { img: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=500&h=700&auto=format&fit=crop", width: 500, height: 700, alt: "Billboard Layout 1" },
-            { img: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=500&h=400&auto=format&fit=crop", width: 500, height: 400, alt: "Tarpaulin Layout 2" },
-            { img: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=500&h=560&auto=format&fit=crop", width: 500, height: 560, alt: "Event Branding Display" },
-            { img: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=500&h=680&auto=format&fit=crop", width: 500, height: 680, alt: "Large Format Outdoor Signage" },
-            { img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=500&h=460&auto=format&fit=crop", width: 500, height: 460, alt: "Stage Banner Concept" },
-            { img: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=500&h=540&auto=format&fit=crop", width: 500, height: 540, alt: "Exhibition Poster Graphic" }
-        ],
+        // Automatically checks up to 50 images per folder!
+        billboards: generateImageSet("billboards", "billboard", "jpg", 50),
+        vehicle: generateImageSet("vehicle", "vehicle", "jpg", 50),
+        logo: generateImageSet("logo", "logo", "jpg", 50),
 
-        // Vehicle Branding & Coaster Wraps
-        vehicle: [
-            { img: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=500&h=400&auto=format&fit=crop", width: 500, height: 400, alt: "Coaster Bus Wrap" },
-            { img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=500&h=620&auto=format&fit=crop", width: 500, height: 620, alt: "Transit Fleet Graphics" },
-            { img: "https://images.unsplash.com/photo-1449157291145-7efd050a4d0e?q=80&w=500&h=420&auto=format&fit=crop", width: 500, height: 420, alt: "Fleet Wrap Side Profile" },
-            { img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=500&h=380&auto=format&fit=crop", width: 500, height: 380, alt: "Van Commercial Branding" }
-        ],
-
-        // Logo Design & Brand Identity
-        logo: [
-            { img: "https://images.unsplash.com/photo-1600132806370-bf17e65e942f?q=80&w=500&h=560&auto=format&fit=crop", width: 500, height: 560, alt: "Brand Guideline Identity" },
-            { img: "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&w=500&h=380&auto=format&fit=crop", width: 500, height: 380, alt: "Vector Logo Mark" },
-            { img: "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=500&h=650&auto=format&fit=crop", width: 500, height: 650, alt: "Typography System" },
-            { img: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=500&h=520&auto=format&fit=crop", width: 500, height: 520, alt: "Color Palette System" },
-            { img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=500&h=620&auto=format&fit=crop", width: 500, height: 620, alt: "Logo Asset Mockup" }
-        ],
-
-        // Multi-Channel EDM HTML + Social Posters
         marketing: [
             {
                 type: "html",
@@ -106,12 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 file: "Archive/ServerLIFT%20-%20EDM%20DSPH.html",
                 title: "ServerLIFT - EDM DSPH"
             },
-            { img: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=500&h=650&auto=format&fit=crop", width: 500, height: 650, alt: "LinkedIn Promotional Poster" },
-            { img: "https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=500&h=500&auto=format&fit=crop", width: 500, height: 500, alt: "Facebook Campaign Graphic" },
-            { img: "https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?q=80&w=500&h=420&auto=format&fit=crop", width: 500, height: 420, alt: "Digital Marketing Analytics Poster" }
+            ...generateImageSet("marketing", "poster", "jpg", 50)
         ],
 
-        // 2024-2025 Archive PDF Document Entry
         archive: [
             { 
                 type: "pdf", 
@@ -155,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const htmlItems = categoryItems.filter(item => item && item.type === "html");
                 const imageItems = categoryItems.filter(item => item && item.img);
 
-                // Left Column: Stacked Compact Interactive HTML Frames
+                // Left Column: Stacked Interactive HTML Frames
                 const leftCol = document.createElement('div');
                 leftCol.className = "flex flex-col gap-3.5 w-full";
 
@@ -183,16 +177,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const figure = document.createElement('figure');
                     figure.className = "group break-inside-avoid m-0 mb-3 rounded-xl overflow-hidden bg-tgl07-well shadow-md cursor-pointer";
 
-                    figure.innerHTML = `
-                        <img src="${item.img}" 
-                             alt="${item.alt || 'Campaign Poster'}" 
-                             loading="lazy" 
-                             decoding="async" 
-                             width="${item.width || 500}" 
-                             height="${item.height || 400}" 
-                             class="block w-full h-auto transition-transform duration-500 group-hover:scale-[1.06]">
-                    `;
+                    const imgEl = document.createElement('img');
+                    imgEl.src = item.img;
+                    imgEl.alt = item.alt || 'Campaign Poster';
+                    imgEl.loading = "lazy";
+                    imgEl.decoding = "async";
+                    imgEl.className = "block w-full h-auto transition-transform duration-500 group-hover:scale-[1.06]";
 
+                    // Silently remove missing images if they don't exist yet in your local folder
+                    imgEl.onerror = () => figure.remove();
+
+                    figure.appendChild(imgEl);
                     figure.addEventListener('click', (e) => {
                         e.stopPropagation();
                         openImageLightbox(item.img, item.alt);
@@ -212,16 +207,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const figure = document.createElement('figure');
                     figure.className = "group break-inside-avoid m-0 mb-3.5 rounded-xl overflow-hidden bg-tgl07-well shadow-[0_8px_22px_-16px_oklch(0.3_0.04_265/0.6)] transition-shadow duration-300 hover:shadow-[0_16px_34px_-18px_oklch(0.3_0.04_265/0.55)] cursor-pointer";
 
-                    figure.innerHTML = `
-                        <img src="${item.img}" 
-                             alt="${item.alt || 'Gallery Image'}" 
-                             loading="lazy" 
-                             decoding="async" 
-                             width="${item.width || 500}" 
-                             height="${item.height || 400}" 
-                             class="block w-full h-auto transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.06]">
-                    `;
+                    const imgEl = document.createElement('img');
+                    imgEl.src = item.img;
+                    imgEl.alt = item.alt || 'Gallery Image';
+                    imgEl.loading = "lazy";
+                    imgEl.decoding = "async";
+                    imgEl.className = "block w-full h-auto transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.06]";
 
+                    // Silently remove missing images if they don't exist yet in your local folder
+                    imgEl.onerror = () => figure.remove();
+
+                    figure.appendChild(imgEl);
                     figure.addEventListener('click', (e) => {
                         e.stopPropagation();
                         openImageLightbox(item.img, item.alt);
