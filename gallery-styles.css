@@ -1270,3 +1270,37 @@ body:not(.dark) #themeToggle .icon-sun,
 body:not(.dark) .icon-btn .icon-sun {
     display: none !important;
 }
+
+/* ====================================================
+   FORCE GALLERY NAVBAR ACTIONS ON MOBILE (iPhone 13 / <= 768px)
+   ==================================================== */
+
+@media screen and (max-width: 768px) {
+    /* 1. Ensure the action container stays visible on mobile */
+    .navbar .desktop-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+
+    /* 2. Scale down the 'Return to Main Portfolio' button so it doesn't overflow */
+    .btn-cyan-glow.btn-sm {
+        padding: 0.45rem 0.75rem !important;
+        font-size: 0.75rem !important;
+        white-space: nowrap !important;
+    }
+
+    /* 3. Keep the theme toggle button a compact square right beside it */
+    #themeToggle {
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        min-height: 38px !important;
+        border-radius: 8px !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+    }
+}

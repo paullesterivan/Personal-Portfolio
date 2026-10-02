@@ -1197,3 +1197,74 @@ html, body {
         font-size: 0.85rem !important;
     }
 }
+/* ====================================================
+   CAROUSEL MOBILE RESPONSIVENESS FIX (Skills & Projects)
+   ==================================================== */
+
+@media screen and (max-width: 600px) {
+    /* 1. Reduce Stage Height and Perspective Depth */
+    .cylinder-carousel-container {
+        padding: 0.5rem 0 !important;
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .cylinder-stage {
+        height: 420px !important; /* Prevents vertical bottom cropping */
+        perspective: 600px !important; /* Scales down 3D depth for small screens */
+        width: 100% !important;
+    }
+
+    /* 2. Scale Down Cards for Mobile Screens */
+    .cylinder-card,
+    .project-card.cylinder-card,
+    .skill-card.cylinder-card {
+        width: 280px !important;  /* Reduced width so card isn't wider than screen */
+        max-width: 85vw !important;
+        padding: 1rem !important;  /* Compact inner padding */
+        box-sizing: border-box !important;
+    }
+
+    /* 3. Adjust Banner Image Heights inside Project Cards */
+    .project-banner {
+        height: 120px !important;
+        padding: 0.85rem !important;
+    }
+
+    .project-banner h3 {
+        font-size: 1.1rem !important;
+    }
+
+    /* 4. Compact Card Typography & Tags */
+    .skill-card h3,
+    .project-body p {
+        font-size: 0.85rem !important;
+        line-height: 1.35 !important;
+    }
+
+    .tag-group {
+        gap: 0.35rem !important;
+    }
+
+    .tag, 
+    .tag-sm {
+        font-size: 0.7rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+
+    /* 5. Reposition Carousel Arrow Buttons */
+    .carousel-btn {
+        width: 32px !important;
+        height: 32px !important;
+        font-size: 0.85rem !important;
+        z-index: 10 !important;
+    }
+
+    .prev-btn {
+        left: 4px !important;
+    }
+
+    .next-btn {
+        right: 4px !important;
+    }
+}
