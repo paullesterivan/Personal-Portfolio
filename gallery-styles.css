@@ -1304,3 +1304,51 @@ body:not(.dark) .icon-btn .icon-sun {
         flex-shrink: 0 !important;
     }
 }
+
+/* ====================================================
+   GALLERY NAVBAR MOBILE CLEANUP (iPhone 13 / <= 768px)
+   ==================================================== */
+
+@media screen and (max-width: 768px) {
+    /* 1. Hide full text name, show ONLY the 'PM' badge */
+    .brand-logo .logo-text {
+        display: none !important;
+    }
+
+    /* 2. Hide text inside 'Return to Main Portfolio', show ONLY the home icon */
+    .btn-cyan-glow.btn-sm {
+        padding: 0 !important;
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        min-height: 38px !important;
+        border-radius: 8px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Hide the text node inside the return button */
+    .btn-cyan-glow.btn-sm {
+        font-size: 0 !important; /* Hides text while keeping icon visible */
+    }
+
+    .btn-cyan-glow.btn-sm i {
+        font-size: 1rem !important; /* Restores home icon size */
+        margin-right: 0 !important;
+    }
+
+    /* 3. Ensure Theme Toggle stays a matching compact square */
+    #themeToggle {
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        min-height: 38px !important;
+        border-radius: 8px !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
