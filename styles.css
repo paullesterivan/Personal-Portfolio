@@ -1543,3 +1543,100 @@ html, body {
         box-sizing: border-box !important;
     }
 }
+
+/* ====================================================
+   PERMANENT MOBILE CONTAINER & CARD FIX (<= 600px)
+   ==================================================== */
+
+@media screen and (max-width: 600px) {
+    /* 1. Global Viewport Clamping */
+    html, body {
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* 2. Reset Outer Container Constraints */
+    #contact,
+    #contact .container,
+    .contact-grid,
+    .contact-info,
+    .contact-form-wrapper {
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1rem !important;
+    }
+
+    /* 3. Force Glass Cards & Contact Boxes to Shrink */
+    .glass-card,
+    .contact-card,
+    .status-card,
+    .feature-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important; /* Prevents flex children from overflowing */
+        padding: 1rem !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    /* 4. Fix Contact Info List Layout */
+    .info-list {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.85rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    .info-item {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Force email & address to wrap word by word */
+    .info-item .val {
+        font-size: 0.85rem !important;
+        line-height: 1.35 !important;
+        word-break: break-word !important;
+        overflow-wrap: anywhere !important;
+        white-space: normal !important;
+        max-width: 100% !important;
+    }
+
+    /* 5. Fix Form Inputs & Textarea */
+    .form-row,
+    .form-group {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        margin-bottom: 0.75rem !important;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    .btn-full {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        font-size: 0.9rem !important;
+        padding: 0.7rem !important;
+    }
+}
