@@ -1381,3 +1381,23 @@ html, body {
         right: 5px !important;
     }
 }
+
+/* ====================================================
+   EMBLEM IMAGE LOGO STYLING
+   ==================================================== */
+
+.logo-badge {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+}
+
+.logo-badge .logo-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important; /* Ensures the emblem fills the badge perfectly */
+    display: block !important;
+    border-radius: inherit !important;
+}
