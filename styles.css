@@ -1268,3 +1268,116 @@ html, body {
         right: 4px !important;
     }
 }
+
+/* ====================================================
+   FORCE 3D CAROUSEL MOBILE OVERRIDE (iPhone 13 & Mobile)
+   ==================================================== */
+
+@media screen and (max-width: 600px) {
+    /* 1. Prevent parent containers from clipping content */
+    .cylinder-carousel-container,
+    .cylinder-stage {
+        height: auto !important;
+        min-height: 480px !important;
+        perspective: none !important;
+        overflow: visible !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        padding: 0 !important;
+    }
+
+    .cylinder-track {
+        transform-style: flat !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        position: relative !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
+    /* 2. Override JavaScript hardcoded element dimensions */
+    .cylinder-card,
+    .project-card.cylinder-card,
+    .skill-card.cylinder-card,
+    div[class*="cylinder-card"] {
+        width: 88vw !important;
+        max-width: 320px !important;
+        min-width: 0 !important;
+        margin: 0 auto !important;
+        padding: 1rem !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Flatten inactive 3D cards on mobile so they don't stick out off-screen */
+    .cylinder-card:not(.active) {
+        opacity: 0 !important;
+        pointer-events: none !important;
+        transform: scale(0.8) !important;
+    }
+
+    .cylinder-card.active {
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        transform: none !important;
+        position: relative !important;
+        left: 0 !important;
+        top: 0 !important;
+    }
+
+    /* 3. Compact inner card elements */
+    .project-banner {
+        height: 110px !important;
+        padding: 0.75rem !important;
+    }
+
+    .project-banner h3 {
+        font-size: 1rem !important;
+    }
+
+    .skill-card h3 {
+        font-size: 1.1rem !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .skill-card p,
+    .project-body p {
+        font-size: 0.85rem !important;
+        line-height: 1.35 !important;
+    }
+
+    .tag-group {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 0.35rem !important;
+        width: 100% !important;
+    }
+
+    .tag, 
+    .tag-sm {
+        font-size: 0.7rem !important;
+        padding: 0.2rem 0.5rem !important;
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+
+    /* 4. Fix position of carousel left/right arrow buttons */
+    .carousel-btn {
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        z-index: 50 !important;
+        width: 36px !important;
+        height: 36px !important;
+        background: rgba(15, 23, 42, 0.85) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        color: #38bdf8 !important;
+    }
+
+    .prev-btn {
+        left: 5px !important;
+    }
+
+    .next-btn {
+        right: 5px !important;
+    }
+}
