@@ -1306,40 +1306,54 @@ body:not(.dark) .icon-btn .icon-sun {
 }
 
 /* ====================================================
-   GALLERY NAVBAR MOBILE CLEANUP (iPhone 13 / <= 768px)
+   GALLERY NAVBAR MOBILE OVERRIDE (iPhone 13 / <= 768px)
    ==================================================== */
 
 @media screen and (max-width: 768px) {
-    /* 1. Hide full text name, show ONLY the 'PM' badge */
-    .brand-logo .logo-text {
+    /* 1. Make the PM logo badge a perfect square */
+    .brand-logo .logo-badge {
+        width: 38px !important;
+        height: 38px !important;
+        min-width: 38px !important;
+        min-height: 38px !important;
+        border-radius: 8px !important; /* Square with rounded corners */
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 0 !important;
+        font-weight: 700 !important;
+    }
+
+    /* 2. Hide full name text on mobile completely */
+    .brand-logo .logo-text,
+    .brand-logo span {
         display: none !important;
     }
 
-    /* 2. Hide text inside 'Return to Main Portfolio', show ONLY the home icon */
+    /* 3. Turn 'Return to Main Portfolio' button into ONLY a home icon square */
     .btn-cyan-glow.btn-sm {
-        padding: 0 !important;
         width: 38px !important;
         height: 38px !important;
         min-width: 38px !important;
         min-height: 38px !important;
         border-radius: 8px !important;
+        padding: 0 !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        font-size: 0.9rem !important;
+        font-size: 0 !important; /* Completely hides the text label */
     }
 
-    /* Hide the text node inside the return button */
-    .btn-cyan-glow.btn-sm {
-        font-size: 0 !important; /* Hides text while keeping icon visible */
+    /* Make the home icon visible and centered inside the square button */
+    .btn-cyan-glow.btn-sm i,
+    .btn-cyan-glow.btn-sm .home-icon {
+        font-size: 1.1rem !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: inline-block !important;
     }
 
-    .btn-cyan-glow.btn-sm i {
-        font-size: 1rem !important; /* Restores home icon size */
-        margin-right: 0 !important;
-    }
-
-    /* 3. Ensure Theme Toggle stays a matching compact square */
+    /* 4. Keep Theme Toggle button matching the same square size */
     #themeToggle {
         width: 38px !important;
         height: 38px !important;
