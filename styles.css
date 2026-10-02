@@ -1102,3 +1102,113 @@ a.project-link {
 }
 
 }
+
+/* ====================================================
+   MOBILE RESPONSIVENESS FIXES (iPhone 13 / Viewports <= 480px)
+   ==================================================== */
+
+/* 1. Prevent Horizontal Page Overflow */
+html, body {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 480px) {
+    /* 2. Container Padding Adjustments */
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 3. Hero Section & Typography Scaling */
+    .hero-title {
+        font-size: 2rem !important;
+        line-height: 1.25 !important;
+        word-wrap: break-word;
+    }
+
+    .hero-subtitle {
+        font-size: 0.95rem !important;
+        line-height: 1.4 !important;
+        word-wrap: break-word;
+    }
+
+    .hero-description {
+        font-size: 0.9rem !important;
+        line-height: 1.5 !important;
+    }
+
+    /* 4. Fix Hero Action Buttons Overflow */
+    .hero-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 0.75rem !important;
+    }
+
+    .hero-actions .btn {
+        width: 100% !important;
+        justify-content: center !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 5. Fix Quick Stats Grid Overflow (Seen at bottom of screenshot 2) */
+    .quick-stats {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        margin-top: 1.5rem !important;
+    }
+
+    .stat-item {
+        width: 100% !important;
+        text-align: center !important;
+    }
+
+    /* 6. Section Titles & Headings Overlap Fix (Seen in screenshot 1) */
+    .main-heading {
+        font-size: 1.6rem !important;
+        line-height: 1.3 !important;
+        word-wrap: break-word;
+    }
+
+    .sub-heading {
+        font-size: 0.85rem !important;
+        letter-spacing: 1px !important;
+    }
+
+    /* 7. Grid & Glass Card Layouts Stacking */
+    .hero-grid,
+    .about-grid,
+    .cards-grid,
+    .contact-grid,
+    .form-row {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        gap: 1.25rem !important;
+    }
+
+    .profile-card,
+    .glass-card,
+    .feature-card,
+    .contact-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 1.25rem !important;
+    }
+
+    /* 8. Carousel & Stage Scaling on Mobile */
+    .cylinder-stage {
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    .cylinder-card {
+        max-width: 100% !important;
+    }
+}
