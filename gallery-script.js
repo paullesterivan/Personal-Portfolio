@@ -56,28 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // DYNAMIC / FLEXIBLE FOLDER IMAGE LOADER HELPER
+    // RANGE-BASED FOLDER IMAGE LOADER HELPER
     // ----------------------------------------------------
     /**
-     * Generates an array of image candidates.
-     * Supports custom named files (e.g. "billboard100") AND standard ranges (1 to maxLimit).
+     * Generates image candidates across a specific numerical range.
+     * Default startNum = 100, endNum = 160 scans billboard100.jpg -> billboard160.jpg
      */
-    function generateFlexibleImageSet(folder, prefix, ext, extraFilenames = [], maxLimit = 100) {
+    function generateRangeImageSet(folder, prefix, ext, startNum = 100, endNum = 160) {
         const images = [];
 
-        // 1. Add any custom / arbitrary named files first
-        extraFilenames.forEach(name => {
-            const fileName = name.includes('.') ? name : `${name}.${ext}`;
-            images.push({
-                img: `Images/${folder}/${fileName}`,
-                alt: `${prefix} ${name}`,
-                width: 500,
-                height: 400
-            });
-        });
-
-        // 2. Add sequential numerical candidates (1 through maxLimit)
-        for (let i = 1; i <= maxLimit; i++) {
+        for (let i = startNum; i <= endNum; i++) {
             images.push({
                 img: `Images/${folder}/${prefix}${i}.${ext}`,
                 alt: `${prefix} ${i}`,
@@ -101,10 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxDesc = document.getElementById('lightboxDesc');
 
     const categoryAssetDatabase = {
-        // Automatically scans up to 100 images per category + custom names like billboard100
-        billboards: generateFlexibleImageSet("billboards", "billboard", "jpg", ["billboard100", "billboard_v2"], 100),
-        vehicle: generateFlexibleImageSet("vehicle", "vehicle", "jpg", ["vehicle100", "coaster_wrap"], 100),
-        logo: generateFlexibleImageSet("logo", "logo", "jpg", ["logo100", "brand_emblem"], 100),
+        // Scans billboard100.jpg through billboard160.jpg inside Images/billboards/
+        billboards: generateRangeImageSet("billboards", "billboard", "jpg", 100, 160),
+        
+        // Scans vehicle100.jpg through vehicle160.jpg inside Images/vehicle/
+        vehicle: generateRangeImageSet("vehicle", "vehicle", "jpg", 100, 160),
+        
+        // Scans logo100.jpg through logo160.jpg inside Images/logo/
+        logo: generateRangeImageSet("logo", "logo", "jpg", 100, 160),
 
         marketing: [
             {
@@ -117,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 file: "Archive/ServerLIFT%20-%20EDM%20DSPH.html",
                 title: "ServerLIFT - EDM DSPH"
             },
-            ...generateFlexibleImageSet("marketing", "poster", "jpg", ["poster100", "marketing_hero"], 100)
+            ...generateRangeImageSet("marketing", "poster", "jpg", 100, 160)
         ],
 
         archive: [
@@ -228,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imgEl.decoding = "async";
                     imgEl.className = "block w-full h-auto transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.06]";
 
-                    // Silently remove missing candidate images
+                    // Silently remove missing candidate images (e.g. billboard156 through billboard160)
                     imgEl.onerror = () => figure.remove();
 
                     figure.appendChild(imgEl);
