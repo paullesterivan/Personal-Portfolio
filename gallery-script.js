@@ -56,14 +56,27 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // DYNAMIC / INFINITE FOLDER IMAGE LOADER HELPER
+    // DYNAMIC / FLEXIBLE FOLDER IMAGE LOADER HELPER
     // ----------------------------------------------------
     /**
-     * Generates an array of image objects up to maxLimit.
-     * Set maxLimit high (e.g., 50) so you can drop as many photos as you want into folders.
+     * Generates an array of image candidates.
+     * Supports custom named files (e.g. "billboard100") AND standard ranges (1 to maxLimit).
      */
-    function generateImageSet(folder, prefix, ext, maxLimit = 50) {
+    function generateFlexibleImageSet(folder, prefix, ext, extraFilenames = [], maxLimit = 100) {
         const images = [];
+
+        // 1. Add any custom / arbitrary named files first
+        extraFilenames.forEach(name => {
+            const fileName = name.includes('.') ? name : `${name}.${ext}`;
+            images.push({
+                img: `Images/${folder}/${fileName}`,
+                alt: `${prefix} ${name}`,
+                width: 500,
+                height: 400
+            });
+        });
+
+        // 2. Add sequential numerical candidates (1 through maxLimit)
         for (let i = 1; i <= maxLimit; i++) {
             images.push({
                 img: `Images/${folder}/${prefix}${i}.${ext}`,
@@ -72,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 height: 400
             });
         }
+
         return images;
     }
 
@@ -87,10 +101,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxDesc = document.getElementById('lightboxDesc');
 
     const categoryAssetDatabase = {
-        // Automatically checks up to 50 images per folder!
-        billboards: generateImageSet("billboards", "billboard", "jpg", 50),
-        vehicle: generateImageSet("vehicle", "vehicle", "jpg", 50),
-        logo: generateImageSet("logo", "logo", "jpg", 50),
+        // Automatically scans up to 100 images per category + custom names like billboard100
+        billboards: generateFlexibleImageSet("billboards", "billboard", "jpg", ["billboard100", "billboard_v2"], 100),
+        vehicle: generateFlexibleImageSet("vehicle", "vehicle", "jpg", ["vehicle100", "coaster_wrap"], 100),
+        logo: generateFlexibleImageSet("logo", "logo", "jpg", ["logo100", "brand_emblem"], 100),
 
         marketing: [
             {
@@ -103,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 file: "Archive/ServerLIFT%20-%20EDM%20DSPH.html",
                 title: "ServerLIFT - EDM DSPH"
             },
-            ...generateImageSet("marketing", "poster", "jpg", 50)
+            ...generateFlexibleImageSet("marketing", "poster", "jpg", ["poster100", "marketing_hero"], 100)
         ],
 
         archive: [
@@ -184,7 +198,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imgEl.decoding = "async";
                     imgEl.className = "block w-full h-auto transition-transform duration-500 group-hover:scale-[1.06]";
 
-                    // Silently remove missing images if they don't exist yet in your local folder
+                    // Silently remove missing images if they don't exist in local folder
                     imgEl.onerror = () => figure.remove();
 
                     figure.appendChild(imgEl);
@@ -214,7 +228,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imgEl.decoding = "async";
                     imgEl.className = "block w-full h-auto transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.06]";
 
-                    // Silently remove missing images if they don't exist yet in your local folder
+                    // Silently remove missing candidate images
                     imgEl.onerror = () => figure.remove();
 
                     figure.appendChild(imgEl);
