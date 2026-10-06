@@ -56,21 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // RANGE-BASED FOLDER IMAGE LOADER HELPER
+    // FLEXIBLE FOLDER & CASE-INSENSITIVE IMAGE LOADER
     // ----------------------------------------------------
     /**
-     * Generates image candidates across a specific numerical range.
-     * Default startNum = 100, endNum = 160 scans billboard100.jpg -> billboard160.jpg
+     * Folder path: Images/billboards/
+     * File prefix: billboard (e.g., billboard1.jpg -> billboard100.jpg)
      */
-    function generateRangeImageSet(folder, prefix, ext, startNum = 100, endNum = 160) {
+    function generateFlexibleImageSet(folder, prefix, ext = "jpg", startNum = 1, maxLimit = 100) {
         const images = [];
 
-        for (let i = startNum; i <= endNum; i++) {
+        for (let i = startNum; i <= maxLimit; i++) {
+            // Checks lower-case images/ and Images/ folder paths
             images.push({
                 img: `Images/${folder}/${prefix}${i}.${ext}`,
-                alt: `${prefix} ${i}`,
-                width: 500,
-                height: 400
+                alt: `${prefix} ${i}`
+            });
+            images.push({
+                img: `images/${folder}/${prefix}${i}.${ext}`,
+                alt: `${prefix} ${i}`
             });
         }
 
@@ -89,14 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxDesc = document.getElementById('lightboxDesc');
 
     const categoryAssetDatabase = {
-        // Scans billboard100.jpg through billboard160.jpg inside Images/billboards/
-        billboards: generateRangeImageSet("billboards", "billboard", "jpg", 100, 160),
+        // Scans folder 'billboards' for billboard1.jpg through billboard100.jpg
+        billboards: generateFlexibleImageSet("billboards", "billboard", "jpg", 1, 100),
         
-        // Scans vehicle100.jpg through vehicle160.jpg inside Images/vehicle/
-        vehicle: generateRangeImageSet("vehicle", "vehicle", "jpg", 100, 160),
+        // Scans folder 'vehicle' for vehicle1.jpg through vehicle100.jpg
+        vehicle: generateFlexibleImageSet("vehicle", "vehicle", "jpg", 1, 100),
         
-        // Scans logo100.jpg through logo160.jpg inside Images/logo/
-        logo: generateRangeImageSet("logo", "logo", "jpg", 100, 160),
+        // Scans folder 'logo' for logo1.jpg through logo100.jpg
+        logo: generateFlexibleImageSet("logo", "logo", "jpg", 1, 100),
 
         marketing: [
             {
@@ -109,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 file: "Archive/ServerLIFT%20-%20EDM%20DSPH.html",
                 title: "ServerLIFT - EDM DSPH"
             },
-            ...generateRangeImageSet("marketing", "poster", "jpg", 100, 160)
+            ...generateFlexibleImageSet("marketing", "poster", "jpg", 1, 100)
         ],
 
         archive: [
@@ -190,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imgEl.decoding = "async";
                     imgEl.className = "block w-full h-auto transition-transform duration-500 group-hover:scale-[1.06]";
 
-                    // Silently remove missing images if they don't exist in local folder
+                    // Silently remove missing candidate paths
                     imgEl.onerror = () => figure.remove();
 
                     figure.appendChild(imgEl);
@@ -220,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     imgEl.decoding = "async";
                     imgEl.className = "block w-full h-auto transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.06]";
 
-                    // Silently remove missing candidate images (e.g. billboard156 through billboard160)
+                    // Silently remove missing candidate images
                     imgEl.onerror = () => figure.remove();
 
                     figure.appendChild(imgEl);
