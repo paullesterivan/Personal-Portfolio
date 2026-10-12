@@ -56,55 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // MULTI-FORMAT IMAGE GENERATOR (PNG DEFAULT)
+    // IMAGE GENERATOR FOR GALLERY ASSETS
     // ----------------------------------------------------
-    /**
-     * Generates precise paths targeting PNG first (matching your local files),
-     * with fallback support for JPG/JPEG.
-     */
     function generateFolderImageSet(folder, prefix, maxCount = 60) {
         const images = [];
-
         for (let i = 1; i <= maxCount; i++) {
             images.push({
-                // Primary PNG path
-                img: `Images/${folder}/${prefix}${i}.png`,
-                // Fallbacks in case format differs
-                fallbacks: [
-                    `Images/${folder}/${prefix}${i}.jpg`,
-                    `Images/${folder}/${prefix}${i}.jpeg`,
-                    `images/${folder}/${prefix}${i}.png`
-                ],
+                primary: `Images/${folder}/${prefix}${i}.png`,
+                fallback: `Images/${folder}/${prefix}${i}.jpg`,
                 alt: `${prefix} ${i}`
             });
         }
-
         return images;
-    }
-
-    // Pre-flight image checker to verify source before DOM injection (Prevents duplicates & flickering)
-    function resolveValidImagePath(item) {
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.onload = () => resolve(item.img);
-            img.onerror = () => {
-                // Try fallbacks sequentially
-                let index = 0;
-                function tryNextFallback() {
-                    if (index >= item.fallbacks.length) {
-                        resolve(null);
-                        return;
-                    }
-                    const fallbackImg = new Image();
-                    const src = item.fallbacks[index++];
-                    fallbackImg.onload = () => resolve(src);
-                    fallbackImg.onerror = tryNextFallback;
-                    fallbackImg.src = src;
-                }
-                tryNextFallback();
-            };
-            img.src = item.img;
-        });
     }
 
     // ----------------------------------------------------
@@ -119,7 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxDesc = document.getElementById('lightboxDesc');
 
     const categoryAssetDatabase = {
-        // Correctly scans Images/billboards/billboard1.png up to billboard60.png
         billboards: generateFolderImageSet("billboards", "billboard", 60),
         vehicle: generateFolderImageSet("vehicle", "vehicle", 60),
         logo: generateFolderImageSet("logo", "logo", 60),
@@ -147,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    async function populateAndOpenModal(card) {
+    function populateAndOpenModal(card) {
         const title = card.getAttribute('data-title') || 'Project Showcase';
         const tag = card.getAttribute('data-tag') || 'Gallery Asset';
         const desc = card.getAttribute('data-desc') || 'Detailed project preview.';
@@ -161,11 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryItems = categoryAssetDatabase[key] || categoryAssetDatabase.archive || [];
 
         if (modalMasonryGrid) {
-            modalMasonryGrid.className = "w-full py-12 flex flex-col items-center justify-center gap-3 text-sky-400";
-            modalMasonryGrid.innerHTML = `
-                <i class="fa-solid fa-spinner animate-spin text-3xl"></i>
-                <span class="text-sm font-medium text-slate-300">Loading gallery assets...</span>
-            `;
+            modalMasonryGrid.innerHTML = '';
 
             // 1. PDF Mode
             if (categoryItems.length === 1 && categoryItems[0].type === "pdf") {
@@ -181,18 +139,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // 2. Hybrid Mode: HTML EDMs + Image Posters
             else if (categoryItems.some(item => item && item.type === "html")) {
                 const htmlItems = categoryItems.filter(item => item && item.type === "html");
-                const candidateImageItems = categoryItems.filter(item => item && item.img);
+                const candidateImageItems = categoryItems.filter(item => item && item.primary);
 
-                // Verify valid paths asynchronously before rendering
-                const validImageItems = [];
-                for (const item of candidateImageItems) {
-                    const validSrc = await resolveValidImagePath(item);
-                    if (validSrc) {
-                        validImageItems.push({ img: validSrc, alt: item.alt });
-                    }
-                }
-
-                modalMasonryGrid.innerHTML = '';
                 modalMasonryGrid.className = "w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-start";
 
                 // Left Column: HTML EDMs
@@ -215,24 +163,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     leftCol.appendChild(edmWrapper);
                 });
 
-                // Right Column: Social Posters Masonry Grid
+                // Right Column: Social Posters Grid
                 const rightCol = document.createElement('div');
                 rightCol.className = "columns-2 gap-3 w-full";
 
-                validImageItems.forEach((item) => {
+                candidateImageItems.forEach((item) => {
                     const figure = document.createElement('figure');
                     figure.className = "group break-inside-avoid m-0 mb-3 rounded-xl overflow-hidden bg-slate-800/80 shadow-md cursor-pointer";
 
                     const imgEl = document.createElement('img');
-                    imgEl.src = item.img;
+                    imgEl.src = item.primary;
                     imgEl.alt = item.alt || 'Campaign Poster';
                     imgEl.loading = "lazy";
                     imgEl.className = "block w-full h-auto transition-transform duration-500 group-hover:scale-[1.06]";
 
+                    // Fallback logic on load error
+                    imgEl.onerror = function() {
+                        if (this.src.endsWith('.png')) {
+                            this.src = item.fallback;
+                        } else {
+                            figure.remove();
+                        }
+                    };
+
                     figure.appendChild(imgEl);
                     figure.addEventListener('click', (e) => {
                         e.stopPropagation();
-                        openImageLightbox(item.img, item.alt);
+                        openImageLightbox(imgEl.src, item.alt);
                     });
 
                     rightCol.appendChild(figure);
@@ -243,46 +200,37 @@ document.addEventListener('DOMContentLoaded', () => {
             } 
             // 3. Pure Image Gallery Mode
             else {
-                const candidateImageItems = categoryItems.filter(item => item && item.img);
+                const candidateImageItems = categoryItems.filter(item => item && item.primary);
 
-                // Verify valid paths asynchronously before rendering
-                const validImageItems = [];
-                for (const item of candidateImageItems) {
-                    const validSrc = await resolveValidImagePath(item);
-                    if (validSrc) {
-                        validImageItems.push({ img: validSrc, alt: item.alt });
-                    }
-                }
-
-                modalMasonryGrid.innerHTML = '';
                 modalMasonryGrid.className = "w-[min(920px,100%)] columns-4 gap-3.5 max-[820px]:columns-3 max-[560px]:columns-2";
 
-                if (validImageItems.length === 0) {
-                    modalMasonryGrid.innerHTML = `
-                        <div class="col-span-full py-8 text-center text-slate-400 text-sm">
-                            No assets found in this folder yet.
-                        </div>
-                    `;
-                } else {
-                    validImageItems.forEach((item) => {
-                        const figure = document.createElement('figure');
-                        figure.className = "group break-inside-avoid m-0 mb-3.5 rounded-xl overflow-hidden bg-slate-800/80 shadow-lg cursor-pointer";
+                candidateImageItems.forEach((item) => {
+                    const figure = document.createElement('figure');
+                    figure.className = "group break-inside-avoid m-0 mb-3.5 rounded-xl overflow-hidden bg-slate-800/80 shadow-lg cursor-pointer";
 
-                        const imgEl = document.createElement('img');
-                        imgEl.src = item.img;
-                        imgEl.alt = item.alt || 'Gallery Image';
-                        imgEl.loading = "lazy";
-                        imgEl.className = "block w-full h-auto transition-transform duration-500 ease-out group-hover:scale-[1.06]";
+                    const imgEl = document.createElement('img');
+                    imgEl.src = item.primary;
+                    imgEl.alt = item.alt || 'Gallery Image';
+                    imgEl.loading = "lazy";
+                    imgEl.className = "block w-full h-auto transition-transform duration-500 ease-out group-hover:scale-[1.06]";
 
-                        figure.appendChild(imgEl);
-                        figure.addEventListener('click', (e) => {
-                            e.stopPropagation();
-                            openImageLightbox(item.img, item.alt);
-                        });
+                    // Automatic fallback and silent removal of missing files
+                    imgEl.onerror = function() {
+                        if (this.src.endsWith('.png')) {
+                            this.src = item.fallback;
+                        } else {
+                            figure.remove();
+                        }
+                    };
 
-                        modalMasonryGrid.appendChild(figure);
+                    figure.appendChild(imgEl);
+                    figure.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        openImageLightbox(imgEl.src, item.alt);
                     });
-                }
+
+                    modalMasonryGrid.appendChild(figure);
+                });
             }
         }
 
