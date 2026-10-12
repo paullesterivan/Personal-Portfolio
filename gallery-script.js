@@ -56,23 +56,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ----------------------------------------------------
-    // DYNAMIC / INFINITE FOLDER IMAGE LOADER HELPER
+    // MULTI-FORMAT IMAGE GENERATOR (PNG DEFAULT)
     // ----------------------------------------------------
     /**
-     * Generates an array of image objects up to maxLimit.
-     * Set maxLimit high (e.g., 50) so you can drop as many photos as you want into folders.
+     * Generates precise paths targeting PNG first (matching your local files),
+     * with fallback support for JPG/JPEG.
      */
-    function generateImageSet(folder, prefix, ext, maxLimit = 50) {
+    function generateFolderImageSet(folder, prefix, maxCount = 60) {
         const images = [];
-        for (let i = 1; i <= maxLimit; i++) {
+
+        for (let i = 1; i <= maxCount; i++) {
             images.push({
-                img: `Images/${folder}/${prefix}${i}.${ext}`,
-                alt: `${prefix} ${i}`,
-                width: 500,
-                height: 400
+                // Primary PNG path
+                img: `Images/${folder}/${prefix}${i}.png`,
+                // Fallbacks in case format differs
+                fallbacks: [
+                    `Images/${folder}/${prefix}${i}.jpg`,
+                    `Images/${folder}/${prefix}${i}.jpeg`,
+                    `images/${folder}/${prefix}${i}.png`
+                ],
+                alt: `${prefix} ${i}`
             });
         }
+
         return images;
+    }
+
+    // Pre-flight image checker to verify source before DOM injection (Prevents duplicates & flickering)
+    function resolveValidImagePath(item) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(item.img);
+            img.onerror = () => {
+                // Try fallbacks sequentially
+                let index = 0;
+                function tryNextFallback() {
+                    if (index >= item.fallbacks.length) {
+                        resolve(null);
+                        return;
+                    }
+                    const fallbackImg = new Image();
+                    const src = item.fallbacks[index++];
+                    fallbackImg.onload = () => resolve(src);
+                    fallbackImg.onerror = tryNextFallback;
+                    fallbackImg.src = src;
+                }
+                tryNextFallback();
+            };
+            img.src = item.img;
+        });
     }
 
     // ----------------------------------------------------
@@ -87,10 +119,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxDesc = document.getElementById('lightboxDesc');
 
     const categoryAssetDatabase = {
-        // Automatically checks up to 50 images per folder!
-        billboards: generateImageSet("billboards", "billboard", "jpg", 50),
-        vehicle: generateImageSet("vehicle", "vehicle", "jpg", 50),
-        logo: generateImageSet("logo", "logo", "jpg", 50),
+        // Correctly scans Images/billboards/billboard1.png up to billboard60.png
+        billboards: generateFolderImageSet("billboards", "billboard", 60),
+        vehicle: generateFolderImageSet("vehicle", "vehicle", 60),
+        logo: generateFolderImageSet("logo", "logo", 60),
 
         marketing: [
             {
@@ -103,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 file: "Archive/ServerLIFT%20-%20EDM%20DSPH.html",
                 title: "ServerLIFT - EDM DSPH"
             },
-            ...generateImageSet("marketing", "poster", "jpg", 50)
+            ...generateFolderImageSet("marketing", "poster", 60)
         ],
 
         archive: [
@@ -115,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    function populateAndOpenModal(card) {
+    async function populateAndOpenModal(card) {
         const title = card.getAttribute('data-title') || 'Project Showcase';
         const tag = card.getAttribute('data-tag') || 'Gallery Asset';
         const desc = card.getAttribute('data-desc') || 'Detailed project preview.';
@@ -129,9 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryItems = categoryAssetDatabase[key] || categoryAssetDatabase.archive || [];
 
         if (modalMasonryGrid) {
-            modalMasonryGrid.innerHTML = '';
+            modalMasonryGrid.className = "w-full py-12 flex flex-col items-center justify-center gap-3 text-sky-400";
+            modalMasonryGrid.innerHTML = `
+                <i class="fa-solid fa-spinner animate-spin text-3xl"></i>
+                <span class="text-sm font-medium text-slate-300">Loading gallery assets...</span>
+            `;
 
-            // 1. PDF Mode Handling
+            // 1. PDF Mode
             if (categoryItems.length === 1 && categoryItems[0].type === "pdf") {
                 const pdfItem = categoryItems[0];
                 modalMasonryGrid.className = "w-full h-[70vh] flex flex-col items-center justify-center";
@@ -142,14 +178,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     </iframe>
                 `;
             } 
-            // 2. Hybrid Mode: HTML EDMs on Left Column + Social Posters on Right Column
+            // 2. Hybrid Mode: HTML EDMs + Image Posters
             else if (categoryItems.some(item => item && item.type === "html")) {
+                const htmlItems = categoryItems.filter(item => item && item.type === "html");
+                const candidateImageItems = categoryItems.filter(item => item && item.img);
+
+                // Verify valid paths asynchronously before rendering
+                const validImageItems = [];
+                for (const item of candidateImageItems) {
+                    const validSrc = await resolveValidImagePath(item);
+                    if (validSrc) {
+                        validImageItems.push({ img: validSrc, alt: item.alt });
+                    }
+                }
+
+                modalMasonryGrid.innerHTML = '';
                 modalMasonryGrid.className = "w-full grid grid-cols-1 md:grid-cols-2 gap-4 items-start";
 
-                const htmlItems = categoryItems.filter(item => item && item.type === "html");
-                const imageItems = categoryItems.filter(item => item && item.img);
-
-                // Left Column: Stacked Interactive HTML Frames
+                // Left Column: HTML EDMs
                 const leftCol = document.createElement('div');
                 leftCol.className = "flex flex-col gap-3.5 w-full";
 
@@ -173,19 +219,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 const rightCol = document.createElement('div');
                 rightCol.className = "columns-2 gap-3 w-full";
 
-                imageItems.forEach((item) => {
+                validImageItems.forEach((item) => {
                     const figure = document.createElement('figure');
-                    figure.className = "group break-inside-avoid m-0 mb-3 rounded-xl overflow-hidden bg-tgl07-well shadow-md cursor-pointer";
+                    figure.className = "group break-inside-avoid m-0 mb-3 rounded-xl overflow-hidden bg-slate-800/80 shadow-md cursor-pointer";
 
                     const imgEl = document.createElement('img');
                     imgEl.src = item.img;
                     imgEl.alt = item.alt || 'Campaign Poster';
                     imgEl.loading = "lazy";
-                    imgEl.decoding = "async";
                     imgEl.className = "block w-full h-auto transition-transform duration-500 group-hover:scale-[1.06]";
-
-                    // Silently remove missing images if they don't exist yet in your local folder
-                    imgEl.onerror = () => figure.remove();
 
                     figure.appendChild(imgEl);
                     figure.addEventListener('click', (e) => {
@@ -199,32 +241,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 modalMasonryGrid.appendChild(leftCol);
                 modalMasonryGrid.appendChild(rightCol);
             } 
-            // 3. Standard Column Masonry Grid Mode for pure image categories
+            // 3. Pure Image Gallery Mode
             else {
+                const candidateImageItems = categoryItems.filter(item => item && item.img);
+
+                // Verify valid paths asynchronously before rendering
+                const validImageItems = [];
+                for (const item of candidateImageItems) {
+                    const validSrc = await resolveValidImagePath(item);
+                    if (validSrc) {
+                        validImageItems.push({ img: validSrc, alt: item.alt });
+                    }
+                }
+
+                modalMasonryGrid.innerHTML = '';
                 modalMasonryGrid.className = "w-[min(920px,100%)] columns-4 gap-3.5 max-[820px]:columns-3 max-[560px]:columns-2";
 
-                categoryItems.forEach((item) => {
-                    const figure = document.createElement('figure');
-                    figure.className = "group break-inside-avoid m-0 mb-3.5 rounded-xl overflow-hidden bg-tgl07-well shadow-[0_8px_22px_-16px_oklch(0.3_0.04_265/0.6)] transition-shadow duration-300 hover:shadow-[0_16px_34px_-18px_oklch(0.3_0.04_265/0.55)] cursor-pointer";
+                if (validImageItems.length === 0) {
+                    modalMasonryGrid.innerHTML = `
+                        <div class="col-span-full py-8 text-center text-slate-400 text-sm">
+                            No assets found in this folder yet.
+                        </div>
+                    `;
+                } else {
+                    validImageItems.forEach((item) => {
+                        const figure = document.createElement('figure');
+                        figure.className = "group break-inside-avoid m-0 mb-3.5 rounded-xl overflow-hidden bg-slate-800/80 shadow-lg cursor-pointer";
 
-                    const imgEl = document.createElement('img');
-                    imgEl.src = item.img;
-                    imgEl.alt = item.alt || 'Gallery Image';
-                    imgEl.loading = "lazy";
-                    imgEl.decoding = "async";
-                    imgEl.className = "block w-full h-auto transition-transform duration-500 ease-[cubic-bezier(0.2,0.7,0.2,1)] group-hover:scale-[1.06]";
+                        const imgEl = document.createElement('img');
+                        imgEl.src = item.img;
+                        imgEl.alt = item.alt || 'Gallery Image';
+                        imgEl.loading = "lazy";
+                        imgEl.className = "block w-full h-auto transition-transform duration-500 ease-out group-hover:scale-[1.06]";
 
-                    // Silently remove missing images if they don't exist yet in your local folder
-                    imgEl.onerror = () => figure.remove();
+                        figure.appendChild(imgEl);
+                        figure.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            openImageLightbox(item.img, item.alt);
+                        });
 
-                    figure.appendChild(imgEl);
-                    figure.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        openImageLightbox(item.img, item.alt);
+                        modalMasonryGrid.appendChild(figure);
                     });
-
-                    modalMasonryGrid.appendChild(figure);
-                });
+                }
             }
         }
 
@@ -264,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
             imageFocusModal.id = 'imageFocusModal';
             imageFocusModal.className = 'fixed inset-0 z-[2000] flex items-center justify-center bg-black/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300';
             imageFocusModal.innerHTML = `
-                <button id="imageFocusClose" class="absolute top-5 right-5 z-2010 w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white text-xl flex items-center justify-center cursor-pointer hover:bg-sky-500 hover:border-sky-500 transition-all duration-300">
+                <button id="imageFocusClose" class="absolute top-5 right-5 z-[2010] w-10 h-10 rounded-full bg-black/60 border border-white/20 text-white text-xl flex items-center justify-center cursor-pointer hover:bg-sky-500 hover:border-sky-500 transition-all duration-300">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
                 <div class="relative max-w-[90vw] max-h-[90vh] flex items-center justify-center p-2">
