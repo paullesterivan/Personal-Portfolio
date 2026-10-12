@@ -582,22 +582,10 @@
                 setTimeout(() => {
                     downloadBtn.innerHTML = `<i class="fa-solid fa-check"></i> Download Started!`;
                     
-                    const blob = new Blob([
-                        "PAUL LESTER IVAN N. MALANA\n" +
-                        "BS IT Graduate | Graphic Design & Layout Artist | Marketing & IT Support\n" +
-                        "Location: San Antonio, Makati City, 1203\n" +
-                        "Email: paullesterivanmalana@gmail.com\n" +
-                        "Phone: 0962-673-2536\n\n" +
-                        "EXPERIENCE HIGHLIGHTS:\n" +
-                        "- Operations and Marketing Assistant at Datumstruct Philippines Inc.\n" +
-                        "- Senior Graphic Designer & Marketing Staff at King Thomas Learning Academy, Inc.\n" +
-                        "- IT Support Specialist (Desktop, Laptop, Network Troubleshooting)\n" +
-                        "- Software: Photoshop, Illustrator, Premiere Pro, Vtiger CRM, QuickBooks"
-                    ], { type: 'text/plain' });
-                    
+                    // Triggers download of your actual PDF resume file
                     const a = document.createElement('a');
-                    a.href = URL.createObjectURL(blob);
-                    a.download = 'Paul_Lester_Ivan_Malana_Resume.txt';
+                    a.href = 'Resume_MALANA, Paul Lester Ivan N..pdf';
+                    a.download = 'Paul_Lester_Ivan_Malana_Resume.pdf';
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
