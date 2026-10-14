@@ -97,6 +97,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 file: "Archive/ServerLIFT%20-%20EDM%20DSPH.html",
                 title: "ServerLIFT - EDM DSPH"
             },
+            {
+                type: "html",
+                file: "Archive/IXOLIFT%20X510_EDM%20-%20DSSG%20v3.html",
+                title: "IXOLIFT X510 - EDM DSSG"
+            },
+            {
+                type: "html",
+                file: "Archive/Untitled-1.html",
+                title: "Marketing Campaign - EDM Preview"
+            },
             ...generateFolderImageSet("marketing", "poster", 60)
         ],
 
